@@ -1,1 +1,109 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// this is for the rich text editor
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.bubble.css';
+@import '~quill/dist/quill.snow.css';
+
+@Import './colors.scss';
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ikan-primary: mat-palette((
+  50 : #eef5fb,
+  100 : #d4e5f5,
+  200 : #b7d4ee,
+  300 : #9ac2e7,
+  400 : #85b5e1,
+  500 : #6fa8dc,
+  600 : #67a0d8,
+  700 : #5c97d3,
+  800 : #528dce,
+  900 : #407dc5,
+  A100 : #ffffff,
+  A200 : #e3efff,
+  A400 : #b0d3ff,
+  A700 : #96c4ff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+));
+$ikan-accent: mat-palette( (
+  50 : rgb(249, 224, 224),
+  100 : rgb(240, 179, 179),
+  200 : rgb(230, 128, 128),
+  300 : rgb(219, 77, 77),
+  400 : rgb(212, 38, 38),
+  500 : rgb(204, 0, 0),
+  600 : rgb(199, 0, 0),
+  700 : rgb(192, 0, 0),
+  800 : rgb(185, 0, 0),
+  900 : rgb(173, 0, 0),
+  A100 : rgb(255, 215, 215),
+  A200 : rgb(255, 164, 164),
+  A400 : rgb(255, 113, 113),
+  A700 : rgb(255, 88, 88),
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+), A200, A100, A400);
+
+// The warn palette is optional (defaults to red).d
+$ikan-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ikan-theme: mat-light-theme($ikan-primary, $ikan-accent, $ikan-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ikan-theme);
+
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

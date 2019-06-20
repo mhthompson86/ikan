@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpinnerService } from './core/services/spinner.service';
 
 @Component({
   selector: 'ikan-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ikan';
+
+  constructor(public spinnerService: SpinnerService) {}
 }
