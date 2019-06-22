@@ -1,3 +1,6 @@
+$ikan-red: #D42626;
+$Ikan-blue: #85b5e1;
+
 $white: #fff;
 $black: #000;
 $red: #f44336;
@@ -10,69 +13,3 @@ $background: #EBECF0;
 $dark-primary-text: rgba(black, 0.87);
 $light-primary-text: rgba(white, 0.87);
 
-
-$red-palette: (
-  50 : rgb(249, 224, 224),
-  100 : rgb(240, 179, 179),
-  200 : rgb(230, 128, 128),
-  300 : rgb(219, 77, 77),
-  400 : rgb(212, 38, 38),
-  500 : rgb(204, 0, 0),
-  600 : rgb(199, 0, 0),
-  700 : rgb(192, 0, 0),
-  800 : rgb(185, 0, 0),
-  900 : rgb(173, 0, 0),
-  A100 : rgb(255, 215, 215),
-  A200 : rgb(255, 164, 164),
-  A400 : rgb(255, 113, 113),
-  A700 : rgb(255, 88, 88),
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $dark-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
-);
-
-$blue-palette: (
-  50 : #eef5fb,
-  100 : #d4e5f5,
-  200 : #b7d4ee,
-  300 : #9ac2e7,
-  400 : #85b5e1,
-  500 : #6fa8dc,
-  600 : #67a0d8,
-  700 : #5c97d3,
-  800 : #528dce,
-  900 : #407dc5,
-  A100 : #ffffff,
-  A200 : #e3efff,
-  A400 : #b0d3ff,
-  A700 : #96c4ff,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $dark-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
-);

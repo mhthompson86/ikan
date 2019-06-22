@@ -1,0 +1,30 @@
+.container {
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+.columns {
+  width: 100%;
+  display: flex;
+  margin-top: 64px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #F4F5F7;
+  height: 1500px;
+  margin: 3px;
+}
+
+.column-headers {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  mat-toolbar {
+    flex: 1;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

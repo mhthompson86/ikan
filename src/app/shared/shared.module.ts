@@ -5,18 +5,32 @@ import { FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 
 import { UserSelectComponent } from './components/user-select/user-select.component';
-import { DetailViewComponent } from './components/detail-view/detail-view.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { IssueDetailComponent } from './components/issue-detail/issue-detail.component';
 
 @NgModule({
-  declarations: [UserSelectComponent, DetailViewComponent, AlertComponent, ConfirmDialogComponent],
+  declarations: [
+    UserSelectComponent,
+    AlertComponent,
+    ConfirmDialogComponent,
+    IssueDetailComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
     QuillModule.forRoot(),
     AngularMaterialModule
+  ],
+  exports: [
+    AngularMaterialModule,
+    FormsModule,
+
+    UserSelectComponent,
+    AlertComponent,
+    ConfirmDialogComponent,
+    IssueDetailComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

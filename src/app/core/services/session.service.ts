@@ -9,7 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SessionService {
 
-  pageTitle: BehaviorSubject<string> = new BehaviorSubject('DEV Board');
+  pageTitle$: BehaviorSubject<string> = new BehaviorSubject('DEV Board');
+
   richTextModules = {
     toolbar: {
       container: [
@@ -41,7 +42,7 @@ export class SessionService {
       mergeMap(route => route.data)
     )
       .subscribe(data => {
-        this.pageTitle.next(data.title);
+        this.pageTitle$.next(data.title);
         document.title = `${ data.title } | iKan`;
       });
   }

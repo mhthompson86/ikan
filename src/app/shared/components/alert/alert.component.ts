@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ikan-alert',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alert.component.scss']
 })
 export class AlertComponent implements OnInit {
+
+  @Input() class?: 'alert-danger' | 'alert-warning' | 'alert-success' | 'alert-primary' = 'alert-warning';
 
   constructor() { }
 

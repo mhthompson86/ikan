@@ -13,75 +13,77 @@
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css';
 
-@Import './colors.scss';
+@Import './colors';
+@import "./utils";
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
+$ikan-accent: mat-palette((
+  50 : #e2eaf2,
+  100 : #b6cbdf,
+  200 : #85a9ca,
+  300 : #5487b4,
+  400 : #306da4,
+  500 : #0b5394,
+  600 : #0a4c8c,
+  700 : #084281,
+  800 : #063977,
+  900 : #032965,
+  A100 : #95b6ff,
+  A200 : #6294ff,
+  A400 : #2f71ff,
+  A700 : #155fff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+), 400, 200, 600);
+
 $ikan-primary: mat-palette((
-  50 : #eef5fb,
-  100 : #d4e5f5,
-  200 : #b7d4ee,
-  300 : #9ac2e7,
-  400 : #85b5e1,
-  500 : #6fa8dc,
-  600 : #67a0d8,
-  700 : #5c97d3,
-  800 : #528dce,
-  900 : #407dc5,
-  A100 : #ffffff,
-  A200 : #e3efff,
-  A400 : #b0d3ff,
-  A700 : #96c4ff,
+  50 : #f9e0e0,
+  100 : #f0b3b3,
+  200 : #e68080,
+  300 : #db4d4d,
+  400 : #d42626,
+  500 : #cc0000,
+  600 : #c70000,
+  700 : #c00000,
+  800 : #b90000,
+  900 : #ad0000,
+  A100 : #ffd7d7,
+  A200 : #ffa4a4,
+  A400 : #ff7171,
+  A700 : #ff5858,
   contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $dark-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
   )
-));
-$ikan-accent: mat-palette( (
-  50 : rgb(249, 224, 224),
-  100 : rgb(240, 179, 179),
-  200 : rgb(230, 128, 128),
-  300 : rgb(219, 77, 77),
-  400 : rgb(212, 38, 38),
-  500 : rgb(204, 0, 0),
-  600 : rgb(199, 0, 0),
-  700 : rgb(192, 0, 0),
-  800 : rgb(185, 0, 0),
-  900 : rgb(173, 0, 0),
-  A100 : rgb(255, 215, 215),
-  A200 : rgb(255, 164, 164),
-  A400 : rgb(255, 113, 113),
-  A700 : rgb(255, 88, 88),
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $dark-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  )
-), A200, A100, A400);
+), 400, 200, 600);
 
 // The warn palette is optional (defaults to red).d
 $ikan-warn: mat-palette($mat-red);
@@ -106,4 +108,268 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  &.boat-dog {
+    background: url('./assets/images/jax.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+
+.main-content {
+  padding-top: 64px;
+
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 15px;
+  justify-content: center;
+}
+
+/* this allows the box shadow to work */
+.mat-toolbar {
+  background: inherit;
+}
+
+mat-list-item.active, [mat-list-item].active {
+  .mat-list-item-content:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #306DA4;
+  }
+}
+
+/* This is the "active" color showing when a tab is selected */
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background: #fff;
+}
+
+.mat-tab-link {
+  color: #fff;
+}
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+
+}
+
+.mat-tab-nav-bar, .mat-tab-header {
+  border-bottom: none;
+}
+
+.mat-progress-spinner {
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+  z-index: 999;
+  position: absolute !important;
+}
+
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.logo-image {
+  height: auto;
+  width: auto;
+  max-height: 35px;
+  margin: 0 8px 0 0;
+}
+
+.ninety-chip, .ninety-accent-chip {
+  cursor: pointer;
+  margin: 4px;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  display: inline-flex;
+  padding: 7px 12px;
+  border-radius: 16px;
+  align-items: center;
+  min-height: 32px;
+  height: 1px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  transform: translateZ(0);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ninety-chip {
+  background-color: #e0e0e0;
+  color: rgba(0, 0, 0, .87);
+}
+
+.ninety-accent-chip {
+  background-color: #306DA4;
+  color: rgba(255, 255, 255, .87);
+}
+
+quill-editor {
+  .ql-toolbar.ql-snow {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-color: #306DA4;
+  }
+
+  .ql-container.ql-snow {
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-color: #306DA4;
+  }
+}
+
+
+.menu-btn.avatar-image {
+  margin-left: 15px;
+}
+
+
+.ikan-card {
+  flex: 1;
+  /* used to make the ellipsis stuff work */
+  min-width: 0;
+  /* Used to make the flexbox items grow to their own height instead of their parent's
+   ***Needs to be 0% not just 0***  */
+  height: 0%;
+  padding: 0 !important;
+}
+
+.login-card {
+  margin-top: 100px;
+  @media (min-width: 599px) {
+    width: 500px
+  }
+}
+
+.mat-card-actions {
+  display: flex !important;
+  justify-content: flex-end;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+
+mat-card {
+  margin: 5px;
+
+  mat-card-header {
+    padding: 16px 0 0;
+  }
+
+  mat-card-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+
+.ikan-list {
+  min-height: 60px;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .mat-list-item {
+    padding: 0 10px 0 5px !important;
+    @media print {
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+      height: auto !important;
+      border-bottom-color: #ddd;
+    }
+  }
+}
+
+.list-item, .cdk-drag-preview {
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: pointer;
+  background: white;
+  font-size: 14px;
+
+  &:last-child {
+    border: none;
+  }
+
+  button {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  &.opened, &:hover {
+    background-color: #dedede;
+  }
+
+  &:hover .drag-handle {
+    visibility: inherit;
+  }
+
+  &.opened::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #306DA4;
+  }
+
+  .mat-list-item-content {
+    padding: 0 !important;
+    font-size: 14px;
+  }
+
+  .list-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 5px;
+  }
+
+  .drag-handle {
+    visibility: hidden;
+    color: #ccc;
+    cursor: move;
+  }
+}
+
+
+
+/*  Drag and Drop Stuff */
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+  & > div {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+  .drag-handle {
+    visibility: inherit;
+  }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.ikan-list.cdk-drop-list-dragging .list-item:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
