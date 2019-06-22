@@ -1,5 +1,5 @@
 .container {
-  padding: 5px;
+  padding: 0 5px;
   margin-bottom: 25px;
 }
 
@@ -22,6 +22,8 @@
   display: flex;
   position: fixed;
   width: 100%;
+  z-index: 1;
+
   mat-toolbar {
     flex: 1;
     background-color: #fff;
