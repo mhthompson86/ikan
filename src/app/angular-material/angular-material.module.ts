@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 
@@ -21,11 +22,11 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     CommonModule,
     MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatListModule, MatTabsModule, MatMenuModule, MatButtonModule,
-    MatDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule
+    MatDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatChipsModule
   ],
   exports: [
     MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatListModule, MatTabsModule, MatMenuModule, MatButtonModule,
-    MatDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule
+    MatDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatChipsModule
   ]
 })
 export class AngularMaterialModule {}

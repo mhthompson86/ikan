@@ -46,6 +46,10 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
+              "assets": [
+                "src/favicon.ico",
+                "src/assets"
+              ],
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,

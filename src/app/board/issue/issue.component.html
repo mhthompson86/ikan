@@ -1,3 +1,8 @@
-<p>
-  issue works!
-</p>
+<mat-card>
+  <mat-card-content>{{ issue.title }}</mat-card-content>
+  <mat-card-footer>
+    <mat-chip-list>
+      <mat-chip>{{ issue.storyPoints }}</mat-chip>
+    </mat-chip-list>
+  </mat-card-footer>
+</mat-card>

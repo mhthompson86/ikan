@@ -1,0 +1,24 @@
+{
+  "columns": [
+    {
+      "name": "To do",
+      "ordinal": 0,
+      "id": "75398"
+    },
+    {
+      "name": "In Progress",
+      "ordinal": 1,
+      "id": "45683"
+    },
+    {
+      "name": "Testing",
+      "ordinal": 2,
+      "id": "57959"
+    },
+    {
+      "name": "Done",
+      "ordinal": 3,
+      "id": "29684"
+    }
+  ]
+}

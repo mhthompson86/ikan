@@ -16,7 +16,8 @@ import { LoginComponent } from './components/login/login.component';
     AccountMenuComponent,
     TopNavbarComponent,
     HomeComponent,
-    LoginComponent],
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,

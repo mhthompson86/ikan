@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Issue } from '../../shared/models/issue';
 
 @Component({
   selector: 'ikan-issue',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./issue.component.scss']
 })
 export class IssueComponent implements OnInit {
+  @Input() issue: Issue;
 
   constructor() { }
 

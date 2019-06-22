@@ -7,4 +7,5 @@ export class Issue {
   storyPoints?: number;
   assigneeId?: string;
   issueType: IssueType;
+  columnId: string;
 }
