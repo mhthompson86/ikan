@@ -1,0 +1,11 @@
+<button mat-icon-button [matMenuTriggerFor]="issueTypeMenu" aria-label="Issue Type Menu"
+        [matTooltip]="issueType.label" matTooltipPosition="above" matTooltipClass="ikan-tooltip">
+  <mat-icon [style.color]="issueType.color">{{ issueType.icon }}</mat-icon>
+</button>
+
+<mat-menu #issueTypeMenu="matMenu">
+  <button mat-menu-item *ngFor="let type of issueTypes" (click)="setIssueType(type)">
+    <mat-icon [style.color]="type.color">{{type.icon}}</mat-icon>
+    <span>{{type.label}}</span>
+  </button>
+</mat-menu>

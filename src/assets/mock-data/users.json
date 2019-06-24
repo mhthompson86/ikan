@@ -1,20 +1,50 @@
-{
-  "users:": [
-    {
-      "id": "763848",
-      "firstName": "MacGregor",
-      "lastName": "Thompson",
-      "fullName": "MacGregor Thompson",
-      "email": "macgregor.thompson@ruralsourcing.com",
-      "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5be9e51a5aeb64000f5aafa5-5"
-    },
-    {
-      "id": "763848",
-      "firstName": "MacGregor",
-      "lastName": "Thompson",
-      "fullName": "MacGregor Thompson",
-      "email": "macgregor.thompson@ruralsourcing.com",
-      "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5be9e51a5aeb64000f5aafa5-5"
-    }
-  ]
-}
+[
+  {
+    "id": "763848",
+    "firstName": "MacGregor",
+    "lastName": "Thompson",
+    "fullName": "MacGregor Thompson",
+    "email": "macgregor.thompson@ruralsourcing.com",
+    "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5be9e51a5aeb64000f5aafa5-5"
+  },
+  {
+    "id": "56745",
+    "firstName": "Brian",
+    "lastName": "Carter",
+    "fullName": "Brian Carter",
+    "email": "brian.carter@ruralsourcing.com",
+    "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5beb31dd184b3f0010d3c548-1"
+  },
+  {
+    "id": "78934",
+    "firstName": "Kaleb",
+    "lastName": "Hornsby",
+    "fullName": "Kaleb Hornsby",
+    "email": "kaleb.hornsby@ruralsourcing.com",
+    "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5c33b61816cfe90012d3c327-1"
+  },
+  {
+    "id": "18795",
+    "firstName": "Jackson",
+    "lastName": "Thompson",
+    "fullName": "Jackson Thompson",
+    "email": "jackson.thompson@ruralsourcing.com",
+    "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5c8677639c08971ed80fb304-2"
+  },
+  {
+    "id": "93687",
+    "firstName": "Potato",
+    "lastName": "Jones",
+    "fullName": "Potato Jones",
+    "email": "potato.jones@ruralsourcing.com",
+    "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5c013d3033109e001097b488-1"
+  },
+  {
+    "id": "92634",
+    "firstName": "Wes",
+    "lastName": "Penny",
+    "fullName": "Wes Penny",
+    "email": "wes.penny@ruralsourcing.com",
+    "pictureUrl": "https://s3-us-west-2.amazonaws.com/traxionio/profile-pictures/5d102cbc4acda900112c41b0-1"
+  }
+]

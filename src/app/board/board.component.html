@@ -5,9 +5,9 @@
     </mat-toolbar>
 
   </div>
-  <div class="columns">
+  <div class="columns" *ngIf="columns && issuesByColumn">
     <div class="column" *ngFor="let column of columns">
-      <ikan-issue *ngFor="let issue of issuesByColumn[column.id]" [issue]="issue"></ikan-issue>
+      <ikan-issue *ngFor="let issue of issuesByColumn[column.id]" [issue]="issue" [issueTypes]="issueTypes"></ikan-issue>
     </div>
   </div>
 </div>

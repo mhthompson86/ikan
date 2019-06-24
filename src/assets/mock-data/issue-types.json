@@ -1,0 +1,20 @@
+[
+  {
+    "id": "73093",
+    "label": "Story",
+    "icon": "bookmark",
+    "color": "#43a047"
+  },
+  {
+    "id": "73093",
+    "label": "Task",
+    "icon": "check_box",
+    "color": "#1E6ACA"
+  },
+  {
+    "id": "76718",
+    "label": "Bug",
+    "icon": "bug_report",
+    "color": "#f44336"
+  }
+]

@@ -1,8 +1,12 @@
 <mat-card>
   <mat-card-content>{{ issue.title }}</mat-card-content>
   <mat-card-footer>
+    <ikan-issue-type-menu [issueType]="issue.issueType"></ikan-issue-type-menu>
     <mat-chip-list>
-      <mat-chip>{{ issue.storyPoints }}</mat-chip>
+      <mat-chip class="point-chip">{{ issue.storyPoints }}</mat-chip>
     </mat-chip-list>
+    <div class="fill-remaining-space"></div>
+    <p class="muted">{{ issue.id }}</p>
+    <ikan-user-select [user]="issue.user" [users]="users" (select)="onSelectUser($event)"></ikan-user-select>
   </mat-card-footer>
 </mat-card>

@@ -1,3 +1,11 @@
-<p>
-  user-select works!
-</p>
+<button mat-icon-button [matMenuTriggerFor]="userMenu" class="menu-btn avatar-image"
+        [style.backgroundImage]="'url('+ user?.pictureUrl +')'" [matTooltip]="user.fullName"
+        matTooltipPosition="above" matTooltipClass="ikan-tooltip">
+</button>
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item *ngFor="let u of users" (click)="selectUser(u)">
+    <span class="user-image" [style.backgroundImage]="'url('+ u?.pictureUrl +')'"></span>
+    <span class="user-name">{{ u?.fullName}}</span>
+  </button>
+</mat-menu>

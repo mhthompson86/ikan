@@ -14,8 +14,8 @@
   flex-direction: column;
   flex: 1;
   background: #F4F5F7;
-  height: 1500px;
   margin: 3px;
+  height: calc(100vh - 200px);
 }
 
 .column-headers {

@@ -373,3 +373,35 @@ mat-card {
 .ikan-list.cdk-drop-list-dragging .list-item:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+.point-chip {
+  min-height: 22px !important;
+  padding: 4px 7px !important;
+}
+
+.avatar-image {
+  background: no-repeat center center;
+  background-size: cover;
+}
+
+ikan-issue {
+  .avatar-image {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.user-image {
+  background: no-repeat center center;
+  background-size: cover;
+  border-radius: 50%;
+  display: block;
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+
+
+.ikan-tooltip {
+  font-size: 14px;
+}

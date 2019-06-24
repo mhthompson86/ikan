@@ -2,18 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { MatDialog } from '@angular/material';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { IssueCreateComponent } from '../components/issue-create/issue-create.component';
 import { Issue } from '../../shared/models/issue';
 import { IssuesByColumn } from '../../shared/models/issues-by-column';
 import { Column } from '../../shared/models/column';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { IssueType } from '../../shared/models/issue-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IssueService {
+  issues: IssuesByColumn;
 
   constructor(private http: HttpClient,
               private dialog: MatDialog) { }
@@ -22,8 +24,13 @@ export class IssueService {
   getIssues(): Observable<IssuesByColumn> {
     return this.http.get<{ issues: IssuesByColumn }>('/assets/mock-data/issues.json')
       .pipe(
-        map(resp => resp.issues)
+        map(resp => resp.issues),
+        tap(issues => this.issues = issues )
       );
+  }
+
+  updateIssue(issue: Issue): Observable<Issue> {
+    return of(issue);
   }
 
   getColumns(): Observable<Column[]> {
@@ -39,6 +46,10 @@ export class IssueService {
       panelClass: 'issue-create-dialog',
       data: { issue }
     });
+  }
+
+  getIssueTypes(): Observable<IssueType[]> {
+    return this.http.get<IssueType[]>('/assets/mock-data/issue-types.json');
   }
 
 
