@@ -1,6 +1,12 @@
 <div class="container">
   <mat-card class="login-card">
     <mat-card-content>
+      <mat-form-field>
+        <mat-select required [(ngModel)]="selectedUser">
+          <mat-option>-- None --</mat-option>
+          <mat-option [value]="user" *ngFor="let user of users">{{ user.fullName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field hintLabel="{{ 'Password is ' + correctPassword }}">
         <input matInput [(ngModel)]="password" placeholder="Password" type="password">
       </mat-form-field>
@@ -11,7 +17,7 @@
       </ikan-alert>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent" (click)="login()" [disabled]="!password?.length">LOGIN</button>
+      <button mat-raised-button color="accent" (click)="login()" [disabled]="selectedUser && !password?.length">LOGIN</button>
     </mat-card-actions>
   </mat-card>
 </div>

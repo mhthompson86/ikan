@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../../shared/models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'ikan-login',
@@ -8,13 +10,17 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
+  selectedUser: User;
+  users: User[];
   password: string;
   correctPassword = 'AngularIsBetterThanReact';
   loginAttempted = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe((users: User[]) => this.users = users);
     document.body.classList.add('boat-dog');
   }
 
@@ -24,9 +30,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.loginAttempted = true;
-    console.log('this.password:', this.password, this.correctPassword);
     if (this.password === this.correctPassword) {
-      this.authService.logIn();
+      this.authService.logIn(this.selectedUser);
     }
   }
 

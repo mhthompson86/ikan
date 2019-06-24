@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SpinnerService } from './core/services/spinner.service';
 
 @Component({
   selector: 'ikan-root',
@@ -8,5 +7,5 @@ import { SpinnerService } from './core/services/spinner.service';
 })
 export class AppComponent {
 
-  constructor(public spinnerService: SpinnerService) {}
+  constructor() {}
 }

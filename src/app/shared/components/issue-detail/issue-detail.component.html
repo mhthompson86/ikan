@@ -1,3 +1,24 @@
-<p>
-  issue-detail works!
-</p>
+<mat-card>
+  <mat-toolbar>
+    <button mat-icon-button (click)="close()" matTooltip="Close details" matTooltipPosition="above"
+            matTooltipClass="ninety-tooltip" aria-label="Close conversation details">
+      <mat-icon svgIcon="chevron-right"></mat-icon>
+    </button>
+
+    <mat-divider [vertical]="true" class="vertical-divider"></mat-divider>
+
+    <button mat-icon-button (click)="delete()">
+      <mat-icon>delete</mat-icon>
+      <span>Delete</span>
+    </button>
+
+    <ikan-user-select *ngIf="issue"
+                        [user]="issue.user"
+                        [users]="teamUsers[item.teamId].users"
+                        (select)="changeOwner($event)"></ikan-user-select>
+  </mat-toolbar>
+
+
+
+
+</mat-card>
