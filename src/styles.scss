@@ -19,7 +19,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ikan-accent: mat-palette((
+$ikan-primary: mat-palette((
   50 : #e2eaf2,
   100 : #b6cbdf,
   200 : #85a9ca,
@@ -52,7 +52,7 @@ $ikan-accent: mat-palette((
   )
 ), 400, 200, 600);
 
-$ikan-primary: mat-palette((
+$ikan-accent: mat-palette((
   50 : #f9e0e0,
   100 : #f0b3b3,
   200 : #e68080,

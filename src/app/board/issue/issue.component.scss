@@ -3,3 +3,7 @@ mat-card-footer {
   align-items: center;
   margin: 0 0 -16px -13px;
 }
+
+.issue-card:hover {
+  cursor: move;
+}

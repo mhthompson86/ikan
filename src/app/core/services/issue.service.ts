@@ -22,15 +22,27 @@ export class IssueService {
 
 
   getIssues(): Observable<IssuesByColumn> {
+    const issues = localStorage.getItem('issues');
+    if (issues) return of(JSON.parse(issues));
     return this.http.get<{ issues: IssuesByColumn }>('/assets/mock-data/issues.json')
       .pipe(
         map(resp => resp.issues),
-        tap(issues => this.issues = issues )
+        tap(i => {
+          this.issues = i;
+          this.saveIssues();
+        })
       );
   }
 
   updateIssue(issue: Issue): Observable<Issue> {
+    const index = this.issues[issue.columnId].findIndex((i: Issue) => i.id === issue.id);
+    this.issues[issue.columnId][index] = issue;
+    this.saveIssues();
     return of(issue);
+  }
+
+  saveIssues() {
+    localStorage.setItem('issues', JSON.stringify(this.issues));
   }
 
   getColumns(): Observable<Column[]> {

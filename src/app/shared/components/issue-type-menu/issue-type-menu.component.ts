@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { IssueType } from '../../models/issue-type';
 import { IssueService } from '../../../core/services/issue.service';
@@ -12,6 +12,8 @@ export class IssueTypeMenuComponent implements OnInit {
   @Input() issueType: IssueType;
   @Input() issueTypes?: IssueType[];
 
+  @Output() update = new EventEmitter();
+
   constructor(private issueService: IssueService) { }
 
   ngOnInit() {
@@ -20,7 +22,8 @@ export class IssueTypeMenuComponent implements OnInit {
   }
 
   setIssueType(type: IssueType) {
-
+    this.issueType = type;
+    this.update.emit();
   }
 
 }

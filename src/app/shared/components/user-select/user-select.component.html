@@ -4,8 +4,17 @@
 </button>
 
 <mat-menu #userMenu="matMenu">
-  <button mat-menu-item *ngFor="let u of users" (click)="selectUser(u)">
-    <span class="user-image" [style.backgroundImage]="'url('+ u?.pictureUrl +')'"></span>
-    <span class="user-name">{{ u?.fullName}}</span>
-  </button>
+  <div class="user-search">
+    <mat-form-field class="user-search-field">
+      <input #userSearchInput matInput placeholder="Search users" value="" ikanStopPropagation
+             autocomplete="off" name="userSearch">
+    </mat-form-field>
+  </div>
+  <div class="user-select-options">
+    <button mat-menu-item *ngFor="let u of users | searchUserFilter: userSearchInput.value | sortByName"
+            (click)="selectUser(u)">
+      <span class="user-image" [style.backgroundImage]="'url('+ u?.pictureUrl +')'"></span>
+      <span class="user-name">{{ u?.fullName}}</span>
+    </button>
+  </div>
 </mat-menu>

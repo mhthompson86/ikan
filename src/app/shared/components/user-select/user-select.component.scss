@@ -1,9 +1,17 @@
-.menu-btn {
-  vertical-align: middle;
-}
 
 .mat-menu-item {
   display: flex;
   align-items: center;
 }
 
+.user-search {
+  padding: 0 10px;
+  .user-search-field {
+    width: 100%;
+  }
+}
+
+.user-select-options {
+  max-height: 220px;
+  overflow-y: auto;
+}

@@ -10,6 +10,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { IssueDetailComponent } from './components/issue-detail/issue-detail.component';
 import { IssueTypeMenuComponent } from './components/issue-type-menu/issue-type-menu.component';
+import { StopPropagationDirective } from './directives/stop-propagation.directive';
+import { SearchUserFilterPipe } from './pipes/search-user-filter.pipe';
+import { SortByNamePipe } from './pipes/sort-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { IssueTypeMenuComponent } from './components/issue-type-menu/issue-type-
     AlertComponent,
     ConfirmDialogComponent,
     IssueDetailComponent,
-    IssueTypeMenuComponent
+    IssueTypeMenuComponent,
+    StopPropagationDirective,
+    SearchUserFilterPipe,
+    SortByNamePipe
   ],
   imports: [
     CommonModule,

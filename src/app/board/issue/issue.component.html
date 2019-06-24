@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card class="issue-card">
   <mat-card-content>{{ issue.title }}</mat-card-content>
   <mat-card-footer>
-    <ikan-issue-type-menu [issueType]="issue.issueType"></ikan-issue-type-menu>
+    <ikan-issue-type-menu [issueType]="issue.issueType" (update)="onUpdate()"></ikan-issue-type-menu>
     <mat-chip-list>
       <mat-chip class="point-chip">{{ issue.storyPoints }}</mat-chip>
     </mat-chip-list>

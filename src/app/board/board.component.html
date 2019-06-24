@@ -5,9 +5,11 @@
     </mat-toolbar>
 
   </div>
-  <div class="columns" *ngIf="columns && issuesByColumn">
-    <div class="column" *ngFor="let column of columns">
-      <ikan-issue *ngFor="let issue of issuesByColumn[column.id]" [issue]="issue" [issueTypes]="issueTypes"></ikan-issue>
+  <div class="columns" *ngIf="columns && issuesByColumn" cdkDropListGroup>
+    <div class="column" *ngFor="let column of columns"
+         cdkDropList id="{{column.id}}" (cdkDropListDropped)="dropIssue($event)" [cdkDropListData]="issuesByColumn[column.id]">
+      <ikan-issue cdkDrag  *ngFor="let issue of issuesByColumn[column.id]" [issue]="issue" [issueTypes]="issueTypes"
+                  (update)="updateIssue($event)"></ikan-issue>
     </div>
   </div>
 </div>

@@ -6,6 +6,8 @@ import { Column } from '../shared/models/column';
 import { IssueType } from '../shared/models/issue-type';
 import { UserService } from '../core/services/user.service';
 import { User } from '../shared/models/user';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Issue } from '../shared/models/issue';
 
 @Component({
   selector: 'ikan-board',
@@ -44,5 +46,24 @@ export class BoardComponent implements OnInit {
   getUsers(): void {
     this.userService.getUsers().subscribe((users: User[]) => this.users = users);
   }
+
+
+  updateIssue(issue: Issue): void {
+    this.issueService.updateIssue(issue).subscribe();
+  }
+
+  dropIssue(event: CdkDragDrop<Issue[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+    // update ordinals and save
+    // API that accepts an array of {id: 82345, ordinal: 1}
+  }
+
 
 }

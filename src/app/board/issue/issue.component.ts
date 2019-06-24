@@ -40,4 +40,6 @@ export class IssueComponent implements OnInit {
     this.issue.userId = user.id;
   }
 
+
+
 }
