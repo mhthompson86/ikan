@@ -1,6 +1,6 @@
-<button mat-icon-button [matMenuTriggerFor]="issueTypeMenu" aria-label="Issue Type Menu"
-        [matTooltip]="issueType?.label" matTooltipPosition="above" matTooltipClass="ikan-tooltip">
-  <mat-icon [style.color]="issueType?.color">{{ issueType?.icon }}</mat-icon>
+<button mat-icon-button [matMenuTriggerFor]="issueTypeMenu" aria-label="Issue Type Menu" [disabled]="disabled">
+  <mat-icon [style.color]="issueType?.color" [matTooltip]="issueType?.label"
+            matTooltipPosition="above" matTooltipClass="ikan-tooltip">{{ issueType?.icon }}</mat-icon>
 </button>
 
 <mat-menu #issueTypeMenu="matMenu">

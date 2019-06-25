@@ -13,83 +13,17 @@
 @import '~quill/dist/quill.bubble.css';
 @import '~quill/dist/quill.snow.css';
 
-@Import './colors';
+@import './colors';
 @import "./utils";
+@import "./mixins";
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ikan-accent: mat-palette((
-  50 : #e2eaf2,
-  100 : #b6cbdf,
-  200 : #85a9ca,
-  300 : #5487b4,
-  400 : #306da4,
-  500 : #0b5394,
-  600 : #0a4c8c,
-  700 : #084281,
-  800 : #063977,
-  900 : #032965,
-  A100 : #95b6ff,
-  A200 : #6294ff,
-  A400 : #2f71ff,
-  A700 : #155fff,
-  contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #ffffff,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #ffffff,
-    A700 : #ffffff,
-  )
-), 400, 200, 600);
 
-$ikan-primary: mat-palette((
-  50 : #f9e0e0,
-  100 : #f0b3b3,
-  200 : #e68080,
-  300 : #db4d4d,
-  400 : #d42626,
-  500 : #cc0000,
-  600 : #c70000,
-  700 : #c00000,
-  800 : #b90000,
-  900 : #ad0000,
-  A100 : #ffd7d7,
-  A200 : #ffa4a4,
-  A400 : #ff7171,
-  A700 : #ff5858,
-  contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #ffffff,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #000000,
-  )
-), 400, 200, 600);
-
-// The warn palette is optional (defaults to red).d
-$ikan-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$ikan-theme: mat-light-theme($ikan-primary, $ikan-accent, $ikan-warn);
+$ikan-theme: mat-light-theme($ikan-accent, $ikan-accent);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -108,6 +42,7 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
   &.boat-dog {
     background: url('./assets/images/jax.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -287,10 +222,22 @@ mat-card {
   }
 }
 
-.list-item, .cdk-drag-preview {
+.list-item {
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: pointer;
+  background: white;
+  font-size: 14px;
+  align-items: center;
 
   &:last-child {
     border: none;
+  }
+
+  .avatar-image {
+    height: 30px;
+    width: 30px;
   }
 
   button {
@@ -316,6 +263,19 @@ mat-card {
     background-color: #306DA4;
   }
 
+  .mat-list-item-content {
+    padding: 0 !important;
+    font-size: 14px;
+  }
+
+  .list-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 5px;
+  }
+
   .drag-handle {
     visibility: hidden;
     color: #ccc;
@@ -331,8 +291,19 @@ mat-card {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
   0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
   mat-card {
     background-color: #e2eaf2;
+  }
+
+  & > div {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  .drag-handle {
+    visibility: inherit;
   }
 }
 
@@ -367,6 +338,7 @@ ikan-issue {
     height: 30px;
     width: 30px;
   }
+
   mat-icon.avatar-image {
     background-color: #dedede;
     font-size: 26px;
@@ -390,6 +362,7 @@ ikan-issue {
   width: 35px !important;
   border-radius: 50%;
   background-color: #dedede;
+
   ::ng-deep g {
     font-size: 35px;
     height: 35px;
@@ -402,7 +375,141 @@ ikan-issue {
   font-size: 14px;
 }
 
+.multiline-tooltip {
+  white-space: pre-line;
+  font-size: 12px;
+}
+
 .vertical-divider {
   height: 70%;
   margin: 0 15px !important;
+}
+
+.owner-avatar{
+  width: 75px;
+  display: flex;
+  justify-content: center;
+}
+
+.owner-btn {
+  width: 75px;
+}
+
+.rotate {
+  transition: .2s;
+}
+
+.rotate-left-45 {
+  transform: rotate(45deg);
+}
+
+.rotate-right-45 {
+  transform: rotate(-45deg);
+}
+
+.rotate-90 {
+  transform: rotateZ(-180deg);
+}
+
+.header-btns {
+  height: 32px !important;
+  padding: 20px 130px 0 72px !important;
+
+  h5 {
+    cursor: pointer;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 700;
+    line-height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    color: rgba(0, 0, 0, 0.54);
+    padding: 0;
+    min-width: 0;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+
+  .due-by-btn {
+    min-width: 65px;
+    margin: 0 5px;
+  }
+
+  .completed-on-btn {
+    min-width: 109px;
+    margin-right: 5px;
+  }
+
+  .mat-icon {
+    @include md-icon-size(16px);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .detail-view {
+    position: fixed;
+    width: 49%;
+    overflow-y: auto;
+    height: calc(100vh - 205px);
+  }
+}
+
+
+.comments-container {
+  background-color: #f6f6f6;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 16px;
+
+  .list-item {
+    cursor: auto;
+    background: inherit;
+    height: auto !important;
+    border-bottom: none;
+  }
+}
+
+.comment-list-item {
+  flex-direction: column;
+  width: 100%;
+
+  .mat-input-element:disabled {
+    color: inherit;
+  }
+
+  .user-input {
+    display: flex;
+    align-items: center;
+  }
+
+  ikan-user-select {
+    margin-right: 15px;
+  }
+
+  .comment-date {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+  }
+}
+
+.new-comment {
+  margin-top: 15px;
+}
+
+.created-completion-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.created-stamp {
+  display: flex;
+  margin-top: 15px;
+  justify-content: flex-end;
 }

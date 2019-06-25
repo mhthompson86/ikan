@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { map, tap, timeout } from 'rxjs/operators';
+import { map, take, tap, timeout } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-
 
 import { Issue } from '../../shared/models/issue';
 import { IssuesByColumn } from '../../shared/models/issues-by-column';
@@ -13,13 +12,14 @@ import { IssueType } from '../../shared/models/issue-type';
 import { SpinnerService } from './spinner.service';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class IssueService {
   issuesByColumn: IssuesByColumn;
   issuesByColumn$ = new BehaviorSubject<IssuesByColumn>(null);
+  issues: Issue[];
+  issues$ = new BehaviorSubject<Issue[]>(null);
   numberOfIssues: number;
   newIssue$ = new Subject<Issue>();
 
@@ -28,12 +28,12 @@ export class IssueService {
               private dialog: MatDialog) { }
 
 
-  getIssues(): Observable<IssuesByColumn> {
+  getIssuesByColumn(): Observable<IssuesByColumn> {
     const storedIssues = localStorage.getItem('issues');
     if (storedIssues) {
       const issues = JSON.parse(storedIssues);
       this.setIssues(issues);
-      return of(issues);
+      return of(issues).pipe(take(1));
     }
     return this.http.get<{ issues: IssuesByColumn }>('/assets/mock-data/issues.json')
       .pipe(
@@ -46,6 +46,32 @@ export class IssueService {
       );
   }
 
+  getIssues(): Observable<Issue[]> {
+    if (!this.issuesByColumn) {
+      return this.getIssuesByColumn()
+        .pipe(
+          map(() => this.issues),
+          tap(issues => {
+            this.issues$.next(issues);
+          }),
+        );
+    } else {
+      this.flattenIssues();
+      this.issues$.next(this.issues);
+      return of(this.issues)
+        .pipe(
+          take(1),
+          timeout(2000)
+        );
+    }
+  }
+
+  flattenIssues() {
+    const flatIssues: Issue[] = [];
+    Object.keys(this.issuesByColumn).forEach((key: string) => flatIssues.push(...this.issuesByColumn[key]));
+    this.issues = flatIssues;
+  }
+
   setIssues(i: IssuesByColumn) {
     this.issuesByColumn = i;
     this.issuesByColumn$.next(i);
@@ -54,9 +80,10 @@ export class IssueService {
     keys.forEach((k: string) => {
       this.numberOfIssues += i[k].length;
     });
+    this.flattenIssues();
   }
 
-  updateIssue(issue: Issue){
+  updateIssue(issue: Issue) {
     const index = this.issuesByColumn[issue.columnId].findIndex((i: Issue) => i.id === issue.id);
     this.issuesByColumn[issue.columnId][index] = issue;
     this.saveToLocalStorage();
@@ -67,6 +94,7 @@ export class IssueService {
     this.issuesByColumn[issue.columnId].push(issue);
     this.saveToLocalStorage();
     return of(issue).pipe(
+      take(1),
       timeout(2000)
     );
   }
@@ -74,14 +102,21 @@ export class IssueService {
   saveToLocalStorage() {
     localStorage.setItem('issues', JSON.stringify(this.issuesByColumn));
   }
-  
+
   deleteIssue(issue: Issue): Observable<Issue> {
     const index = this.issuesByColumn[issue.columnId].findIndex((i: Issue) => i.id === issue.id);
     this.issuesByColumn[issue.columnId].splice(index, 1);
     this.saveToLocalStorage();
     return of(issue).pipe(
+      take(1),
       timeout(2000)
     );
+  }
+
+
+  updateOrdinals(issues: Issue[]): void {
+    issues.forEach((issue: Issue, i: number) => issue.ordinal = i);
+    this.saveToLocalStorage();
   }
 
   getColumns(): Observable<Column[]> {
@@ -102,15 +137,15 @@ export class IssueService {
   confirmDeleteIssueDialog(issue: Issue): Observable<boolean> {
     const confirmDeleteDialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: `Delete ${issue.issueId}?`,
+        title: `Delete ${ issue.issueId }?`,
         message: 'You\'re about to permanently delete this issue and all of its data.',
         okButton: 'Delete',
-        okButtonColor: 'accent',
+        okButtonColor: 'warn',
         cancelBtn: 'Cancel'
       },
       panelClass: 'confirm-dialog-container'
     });
-    return confirmDeleteDialogRef.afterClosed();
+    return confirmDeleteDialogRef.afterClosed().pipe(take(1));
   }
 
 

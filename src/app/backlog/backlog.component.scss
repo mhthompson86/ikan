@@ -1,0 +1,25 @@
+.issue-id {
+  margin-right: 15px;
+}
+
+.title-search {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  mat-form-field {
+    width: 300px;
+  }
+}
+
+mat-card-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.id-points, .id-points-header {
+  display: flex;
+  align-items: center;
+  width: 120px;
+}
+

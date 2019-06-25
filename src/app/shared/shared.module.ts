@@ -14,6 +14,8 @@ import { IssueTypeMenuComponent } from './components/issue-type-menu/issue-type-
 import { StopPropagationDirective } from './directives/stop-propagation.directive';
 import { SearchUserFilterPipe } from './pipes/search-user-filter.pipe';
 import { SortByNamePipe } from './pipes/sort-by-name.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SortByNamePipe } from './pipes/sort-by-name.pipe';
     IssueTypeMenuComponent,
     StopPropagationDirective,
     SearchUserFilterPipe,
-    SortByNamePipe
+    SortByNamePipe,
+    SearchFilterPipe,
+    OrderByPipe
   ],
   imports: [
     CommonModule,
@@ -47,7 +51,12 @@ import { SortByNamePipe } from './pipes/sort-by-name.pipe';
     ConfirmDialogComponent,
     IssueDetailComponent,
     IssueTypeMenuComponent,
-    StopPropagationDirective
+    StopPropagationDirective,
+    SearchFilterPipe,
+    OrderByPipe
+  ],
+  providers: [
+    OrderByPipe
   ],
   entryComponents: [
     ConfirmDialogComponent

@@ -1,0 +1,51 @@
+.title-story-points {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.issue-type-option {
+  display: flex;
+  align-items: center;
+  mat-icon {
+    margin-right: 10px;
+  }
+}
+
+.user-type-div {
+  display: flex;
+}
+
+.story-points-field {
+  margin-left: 5px;
+}
+
+.title-field {
+  margin-right: 5px;
+}
+
+.user-option {
+  display: flex;
+  .user-name {
+    margin-left: 10px;
+  }
+}
+
+::ng-deep .mat-option-text {
+  display: flex !important;
+  align-items: center;
+  .avatar-image {
+    margin-right: 10px;
+  }
+}
+
+::ng-deep ikan-issue-type-menu {
+  mat-icon {
+    transform: scale(1.2);
+  }
+}
+
+.story-points-field {
+  width: 100px;
+}
+

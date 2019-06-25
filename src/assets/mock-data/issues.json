@@ -2,6 +2,7 @@
   "issues": {
     "75398": [
       {
+        "id": "23409",
         "title": "Add Authentication",
         "issueId": "DEV-1006",
         "description": "Add Authentication to the app",
@@ -22,9 +23,12 @@
           "label": "Story",
           "icon": "bookmark",
           "color": "#43a047"
-        }
+        },
+        "createdDate": "2019-06-24T01:31:53.316Z",
+        "createdBy": "MacGregor Thompson"
       },
       {
+        "id": "89409",
         "title": "Create modal not working",
         "issueId": "DEV-1007",
         "description": "",
@@ -45,9 +49,12 @@
           "label": "Bug",
           "icon": "bug_report",
           "color": "#f44336"
-        }
+        },
+        "createdDate": "2019-06-25T01:01:53.316Z",
+        "createdBy": "Kaleb Hornsby"
       },
       {
+        "id": "23445",
         "title": "Add in more complex routing",
         "issueId": "DEV-1005",
         "description": "",
@@ -68,9 +75,12 @@
           "label": "Story",
           "icon": "bookmark",
           "color": "#43a047"
-        }
+        },
+        "createdDate": "2019-06-22T01:59:53.316Z",
+        "createdBy": "MacGregor Thompson"
       },
       {
+        "id": "98409",
         "title": "Update README",
         "issueId": "DEV-1008",
         "description": "",
@@ -91,11 +101,14 @@
           "label": "Task",
           "icon": "check_box",
           "color": "#1E6ACA"
-        }
+        },
+        "createdDate": "2019-06-25T01:31:53.316Z",
+        "createdBy": "Brian Carter"
       }
     ],
     "45683": [
       {
+        "id": "74609",
         "title": "Create backlog",
         "issueId": "DEV-1004",
         "description": "",
@@ -116,11 +129,14 @@
           "label": "Story",
           "icon": "bookmark",
           "color": "#43a047"
-        }
+        },
+        "createdDate": "2019-06-25T02:19:53.316Z",
+        "createdBy": "MacGregor Thompson"
       }
     ],
     "57959": [
       {
+        "id": "23987",
         "title": "Create mock data files",
         "issueId": "DEV-1002",
         "description": "",
@@ -141,11 +157,14 @@
           "label": "Story",
           "icon": "bookmark",
           "color": "#43a047"
-        }
+        },
+        "createdDate": "2019-06-21T14:12:53.316Z",
+        "createdBy": "Adam Faraj"
       }
     ],
     "29684": [
       {
+        "id": "23909",
         "title": "Set up Deployment pipeline",
         "issueId": "DEV-1003",
         "description": "Create a netlify account and set up Ci/CD",
@@ -166,9 +185,12 @@
           "label": "Story",
           "icon": "bookmark",
           "color": "#43a047"
-        }
+        },
+        "createdDate": "2019-06-22T19:25:53.316Z",
+        "createdBy": "MacGregor Thompson"
       },
       {
+        "id": "7594",
         "title": "Create a new GitHub repo",
         "issueId": "DEV-1001",
         "description": "",
@@ -189,7 +211,9 @@
           "label": "Story",
           "icon": "bookmark",
           "color": "#43a047"
-        }
+        },
+        "createdDate": "2019-06-20T07:05:53.316Z",
+        "createdBy": "MacGregor Thompson"
       }
     ]
   }

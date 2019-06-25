@@ -1,5 +1,14 @@
+import { User } from './user';
+
 export class Comment {
-  userId: string;
+  user: User;
   text: string;
-  date: Date;
+  createdDate: Date;
+  editedDate: Date;
+
+  constructor(user: User, text: string) {
+    this.user = user;
+    this.text = text;
+    this.createdDate = new Date();
+  }
 }

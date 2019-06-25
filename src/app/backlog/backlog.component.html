@@ -1,5 +1,66 @@
 <div class="container">
   <mat-card class="ikan-card" [fxHide.lt-lg]="selectedIssue">
+    <div class="title-search">
+      <div class="fill-remaining-space"></div>
+      <mat-form-field class="" floatLabel="never">
+        <input #searchInput matInput [placeholder]="'Search ' + (sessionService.pageTitle$ | async)"
+               autocomplete="off" name="searchInput">
+        <button mat-button *ngIf="searchInput.value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="searchInput.value = ''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <mat-toolbar class="header-btns">
+      <button mat-flat-button class="title-btn" (click)="sortByTitle()">
+        Title
+        <mat-icon *ngIf="sorter['title']" class="rotate"
+                  [ngClass]="{'rotate-90': sorter['title'] === Sorted.descending}">arrow_downward
+        </mat-icon>
+      </button>
 
+      <div class="fill-remaining-space"></div>
+
+      <button mat-flat-button class="owner-btn" (click)="sortByOwner()">
+        Owner
+        <mat-icon *ngIf="sorter['user']" class="rotate"
+                  [ngClass]="{'rotate-90': sorter['user'] === Sorted.descending}">arrow_downward
+        </mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-list class="ikan-list" cdkDropList (cdkDropListDropped)="dropIssue($event)">
+      <mat-list-item class="list-item" cdkDrag matRipple
+                     *ngFor="let issue of issues | searchFilter: searchInput.value; let i = index"
+                     [ngClass]="{'opened': selectedIssue?.id === issue.id}"
+                     (click)="selectIssue(issue, i)">
+        <div class="drag-handle" cdkDragHandle fxHide.lt-sm>
+          <mat-icon>drag_indicator</mat-icon>
+        </div>
+        <ikan-issue-type-menu [issueType]="issue.issueType" [disabled]="true" ikanStopPropagation></ikan-issue-type-menu>
+        <div class="list-title">
+          {{ issue.title }}
+        </div>
+        <div class="owner-avatar">
+          <ikan-user-select [user]="issue.user" [disabled]="true"></ikan-user-select>
+        </div>
+       <div class="id-points">
+         <div class="muted issue-id">{{ issue.issueId }}</div>
+         <mat-chip-list>
+           <mat-chip class="point-chip">{{ issue.storyPoints ? issue.storyPoints : '-' }}</mat-chip>
+         </mat-chip-list>
+       </div>
+      </mat-list-item>
+    </mat-list>
   </mat-card>
+
+  <div class="flex1" *ngIf="selectedIssue">
+    <div class="detail-view">
+      <ikan-issue-detail [issue]="selectedIssue"
+                          [users]="users"
+                          (save)="saveIssue($event)"
+                          (delete)="deleteIssue()"
+                          (close)="closeDetailView()">
+      </ikan-issue-detail>
+    </div>
+  </div>
 </div>

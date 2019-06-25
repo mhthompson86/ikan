@@ -11,7 +11,11 @@ export class AuthService {
   redirectUrl: string;
 
   get isLoggedIn(): boolean {
-    return !!localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('currentUser');
+    if (localStorageUser) {
+      this.currentUser = JSON.parse(localStorageUser);
+      return true;
+    } return false;
   }
 
   constructor(private router: Router) { }

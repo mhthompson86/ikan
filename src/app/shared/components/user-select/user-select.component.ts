@@ -10,6 +10,7 @@ import { UserService } from '../../../core/services/user.service';
 export class UserSelectComponent implements OnInit {
   @Input() user: User;
   @Input() users: User[];
+  @Input() disabled?: boolean;
 
   @Output() select = new EventEmitter();
 

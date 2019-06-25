@@ -11,6 +11,7 @@ import { IssueService } from '../../../core/services/issue.service';
 export class IssueTypeMenuComponent implements OnInit {
   @Input() issueType: IssueType;
   @Input() issueTypes?: IssueType[];
+  @Input() disabled?: boolean;
 
   @Output() update = new EventEmitter<IssueType>();
 

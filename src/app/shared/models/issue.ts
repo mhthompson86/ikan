@@ -9,6 +9,7 @@ export class Issue {
   description = '';
   storyPoints?: number = null;
   columnId = '75398';
+  ordinal: number;
   comments?: Comment[] = [];
   issueType?: IssueType = {
     'id': '73093',
@@ -18,6 +19,8 @@ export class Issue {
   };
   userId: string = null;
   user?: User = null;
+  createdDate: Date;
+  createdBy: string;
 
   constructor(numberOfIssues: number) {
     this.id = Math.floor(Math.random() * 5000).toString();

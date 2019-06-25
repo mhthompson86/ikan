@@ -13,7 +13,7 @@ export class ConfirmDialogComponent implements OnInit, OnDestroy {
   title = 'Are you sure?';
   message = '';
   okButton = 'OK';
-  okButtonClass: 'primary' | 'accent' | 'warn'  = 'primary';
+  okButtonClass: 'primary' | 'accent' | 'warn'  = 'warn';
   cancelButton = 'Cancel';
 
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>,

@@ -29,7 +29,7 @@ export class BoardComponent implements OnInit, OnDestroy {
               private createService: CreateService) { }
 
   ngOnInit() {
-    this.getIssues();
+    this.getIssuesByColumn();
     this.getColumns();
     this.getIssueTypes();
     this.getUsers();
@@ -45,8 +45,8 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  getIssues(): void {
-    this.issueService.getIssues().subscribe();
+  getIssuesByColumn(): void {
+    this.issueService.getIssuesByColumn().subscribe();
   }
 
   getColumns(): void {
@@ -61,7 +61,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.userService.getUsers().subscribe((users: User[]) => this.users = users);
   }
 
-  selectIssue(issue: Issue) {
+  openIssue(issue: Issue) {
     this.createService.openCreateIssueDialog(issue);
   }
 

@@ -27,7 +27,7 @@
 
     <mat-form-field class="story-points-field">
       <input matInput placeholder="Story Points" [(ngModel)]="issue.storyPoints" type="number" autocomplete="off"
-             name="storyPoints" required>
+             name="storyPoints">
     </mat-form-field>
 
   </div>
@@ -43,7 +43,54 @@
                   [preserveWhitespace]="true"></quill-editor>
   </div>
 
+  <div class="created-stamp muted">
+    <div class="created-completion-data">
+      <small>
+        Created <span *ngIf="issue.createdBy">by {{ issue.createdBy }}</span>
+        on {{issue.createdDate | date: 'fullDate'}}
+      </small>
+    </div>
+  </div>
+
+  <div class="comments-container">
+    <h4 class="muted">Comments</h4>
+    <mat-list class="ikan-list" *ngIf="issue.comments?.length">
+      <mat-list-item class="list-item" *ngFor="let comment of issue.comments; let i = index;">
+        <div class="comment-list-item">
+          <div class="user-input">
+            <ikan-user-select [user]="comment.user" [disabled]="true"></ikan-user-select>
+            <mat-form-field>
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        [(ngModel)]="comment.text"
+                        [readonly]="comment.user.id !== currentUser.id"></textarea>
+            </mat-form-field>
+            <button mat-icon-button (click)="deleteComment(i)" *ngIf="comment.user.id === currentUser.id"
+                    matTooltip="Delete Comment" matTooltipPosition="above" aria-label="Delete Comment">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <div class="comment-date">
+            <small class="muted">
+              <span *ngIf="comment.editedDate">(edited) {{comment.editedDate | date: 'medium'}}</span>
+              <span *ngIf="!comment.editedDate">{{comment.createdDate | date: 'medium'}}</span>
+            </small>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <div class="new-comment">
+      <mat-form-field>
+        <mat-label>Add comment</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+                  [(ngModel)]="newCommentText" (keyup.enter)="addComment()"></textarea>
+      </mat-form-field>
+      <button mat-raised-button (click)="addComment()" color="accent" [disabled]="!newCommentText">COMMENT</button>
+    </div>
+  </div>
+
 </mat-dialog-content>
+
+
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
   <button mat-raised-button (click)="dialogRef.close()">Cancel</button>
   <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->

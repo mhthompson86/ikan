@@ -7,7 +7,7 @@
     <ikan-issue-type-menu [issueType]="issue.issueType"
                           (update)="onUpdate()" ikanStopPropagation></ikan-issue-type-menu>
     <mat-chip-list>
-      <mat-chip class="point-chip">{{ issue.storyPoints }}</mat-chip>
+      <mat-chip class="point-chip">{{ issue.storyPoints ? issue.storyPoints : '-' }}</mat-chip>
     </mat-chip-list>
 
     <div class="fill-remaining-space"></div>

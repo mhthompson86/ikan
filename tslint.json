@@ -9,7 +9,6 @@
     "comment-format": [
       true
     ],
-    "curly": [true, "ignore-same-line"],
     "deprecation": {
       "severity": "warn"
     },

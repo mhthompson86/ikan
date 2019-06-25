@@ -1,24 +1,93 @@
 <mat-card>
   <mat-toolbar>
-    <button mat-icon-button (click)="close()" matTooltip="Close details" matTooltipPosition="above"
-            matTooltipClass="ninety-tooltip" aria-label="Close conversation details">
-      <mat-icon svgIcon="chevron-right"></mat-icon>
+    <button mat-icon-button (click)="close.emit()" matTooltip="Close details" matTooltipPosition="above"
+            matTooltipClass="ikan-tooltip" aria-label="Close issue details">
+      <mat-icon>chevron_right</mat-icon>
     </button>
-
     <mat-divider [vertical]="true" class="vertical-divider"></mat-divider>
 
-    <button mat-icon-button (click)="delete()">
-      <mat-icon>delete</mat-icon>
-      <span>Delete</span>
+    <ikan-issue-type-menu [issueType]="issue.issueType"
+                          [issueTypes]="issueTypes"
+                          (update)="setIssueType($event)"></ikan-issue-type-menu>
+    <ikan-user-select [user]="issue.user"
+                      (select)="selectUser($event)"></ikan-user-select>
+
+    <div class="fill-remaining-space"></div>
+    <button mat-icon-button [matMenuTriggerFor]="moreOptions" aria-label="More options">
+      <mat-icon>more_horiz</mat-icon>
     </button>
-
-    <ikan-user-select *ngIf="issue"
-                        [user]="issue.user"
-                        [users]="teamUsers[item.teamId].users"
-                        (select)="changeOwner($event)"></ikan-user-select>
+    <mat-menu #moreOptions="matMenu">
+      <button mat-menu-item (click)="deleteIssue()">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
   </mat-toolbar>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="title-story-points">
+      <mat-form-field class="title-field">
+      <textarea matInput placeholder="Title" [(ngModel)]="issue.title" cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" required cdkFocusInitial
+                (ngModelChange)="this.updateSub.next(issue)"></textarea>
+      </mat-form-field>
+      <mat-form-field class="story-points-field">
+        <input matInput placeholder="Story Points" [(ngModel)]="issue.storyPoints" type="number" autocomplete="off"
+               name="storyPoints" (ngModelChange)="save.emit(issue)">
+      </mat-form-field>
+    </div>
 
 
-
+    <div class="bottom-space-10">
+      <quill-editor [styles]="{minHeight: '100px'}"  placeholder="Description"
+                    (ngModelChange)="this.updateSub.next(issue)"
+                    [(ngModel)]="issue.description"
+                    [modules]="sessionService.richTextModules"
+                    [preserveWhitespace]="true"></quill-editor>
+    </div>
+    <div class="created-stamp muted">
+      <div class="created-completion-data">
+        <small>
+          Created <span *ngIf="issue.createdBy">by {{ issue.createdBy }}</span>
+          on {{issue.createdDate | date: 'fullDate'}}
+        </small>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-footer class="comments-container">
+    <h4 class="muted">Comments</h4>
+    <mat-list class="ikan-list" *ngIf="issue.comments?.length">
+      <mat-list-item class="list-item" *ngFor="let comment of issue.comments; let i = index;">
+        <div class="comment-list-item">
+          <div class="user-input">
+            <ikan-user-select [user]="comment.user" [disabled]="true"></ikan-user-select>
+            <mat-form-field>
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                        [(ngModel)]="comment.text" (ngModelChange)="commentSub.next(comment)"
+                        [readonly]="comment.user.id !== currentUser.id"></textarea>
+            </mat-form-field>
+            <button mat-icon-button (click)="deleteComment(i)" *ngIf="comment.user.id === currentUser.id"
+                    matTooltip="Delete Comment" matTooltipPosition="above" aria-label="Delete Comment">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+          <div class="comment-date">
+            <small class="muted">
+              <span *ngIf="comment.editedDate">(edited) {{comment.editedDate | date: 'medium'}}</span>
+              <span *ngIf="!comment.editedDate">{{comment.createdDate | date: 'medium'}}</span>
+            </small>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <div class="new-comment">
+      <mat-form-field>
+        <mat-label>Add comment</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+                  [(ngModel)]="newCommentText" (keyup.enter)="addComment()"></textarea>
+      </mat-form-field>
+      <button mat-raised-button (click)="addComment()" color="accent" [disabled]="!newCommentText">COMMENT</button>
+    </div>
+  </mat-card-footer>
 
 </mat-card>

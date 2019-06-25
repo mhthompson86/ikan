@@ -1,8 +1,9 @@
-<button mat-icon-button [matMenuTriggerFor]="userMenu" class="menu-btn"
-        matTooltip="{{ user ? user.fullName : 'Unassigned' }}"
+<button mat-icon-button [matMenuTriggerFor]="userMenu" class="menu-btn" [disabled]="disabled">
+  <span matTooltip="{{ user ? user.fullName : 'Unassigned' }}"
         matTooltipPosition="above" matTooltipClass="ikan-tooltip">
-  <span class="avatar-image" *ngIf="user?.pictureUrl" [style.backgroundImage]="'url('+ user?.pictureUrl +')'"></span>
-  <mat-icon class="avatar-image" *ngIf="!user">person</mat-icon>
+    <span class="avatar-image" *ngIf="user?.pictureUrl" [style.backgroundImage]="'url('+ user?.pictureUrl +')'"></span>
+    <mat-icon class="avatar-image" *ngIf="!user">person</mat-icon>
+  </span>
 </button>
 
 <mat-menu #userMenu="matMenu">
