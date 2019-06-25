@@ -43,7 +43,7 @@
                   [preserveWhitespace]="true"></quill-editor>
   </div>
 
-  <div class="created-stamp muted">
+  <div class="created-stamp muted" *ngIf="data.issue">
     <div class="created-completion-data">
       <small>
         Created <span *ngIf="issue.createdBy">by {{ issue.createdBy }}</span>
@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div class="comments-container">
+  <div class="comments-container"  *ngIf="data.issue">
     <h4 class="muted">Comments</h4>
     <mat-list class="ikan-list" *ngIf="issue.comments?.length">
       <mat-list-item class="list-item" *ngFor="let comment of issue.comments; let i = index;">
