@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { SessionService } from '../../services/session.service';
-import { IssueService } from '../../services/issue.service';
+import { CreateService } from '../../services/create.service';
 
 @Component({
   selector: 'ikan-top-navbar',
@@ -20,14 +20,14 @@ export class TopNavbarComponent implements OnInit {
   ];
 
   constructor(private sessionService: SessionService,
-              private issueService: IssueService) {}
+              private createService: CreateService) {}
 
   ngOnInit() {
     this.pageTitle$ = this.sessionService.pageTitle$;
   }
 
   openCreateIssueDialog() {
-    this.issueService.openCreateIssueDialog();
+    this.createService.openCreateIssueDialog();
   }
 
 }

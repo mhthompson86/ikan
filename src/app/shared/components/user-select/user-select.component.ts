@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../../models/user';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'ikan-user-select',
@@ -12,9 +13,10 @@ export class UserSelectComponent implements OnInit {
 
   @Output() select = new EventEmitter();
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    if (!this.users) this.userService.getUsers().subscribe((users: User[]) => this.users = users);
   }
 
   selectUser(user: User) {

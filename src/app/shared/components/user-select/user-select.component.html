@@ -1,6 +1,8 @@
-<button mat-icon-button [matMenuTriggerFor]="userMenu" class="menu-btn avatar-image"
-        [style.backgroundImage]="'url('+ user?.pictureUrl +')'" [matTooltip]="user.fullName"
+<button mat-icon-button [matMenuTriggerFor]="userMenu" class="menu-btn"
+        matTooltip="{{ user ? user.fullName : 'Unassigned' }}"
         matTooltipPosition="above" matTooltipClass="ikan-tooltip">
+  <span class="avatar-image" *ngIf="user?.pictureUrl" [style.backgroundImage]="'url('+ user?.pictureUrl +')'"></span>
+  <mat-icon class="avatar-image" *ngIf="!user">person</mat-icon>
 </button>
 
 <mat-menu #userMenu="matMenu">
@@ -11,6 +13,10 @@
     </mat-form-field>
   </div>
   <div class="user-select-options">
+    <button mat-menu-item (click)="selectUser(null)">
+      <mat-icon class="avatar-icon">person</mat-icon>
+      <span class="user-name">Unassigned</span>
+    </button>
     <button mat-menu-item *ngFor="let u of users | searchUserFilter: userSearchInput.value | sortByName"
             (click)="selectUser(u)">
       <span class="user-image" [style.backgroundImage]="'url('+ u?.pictureUrl +')'"></span>

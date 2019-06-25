@@ -1,9 +1,10 @@
 mat-card-footer {
   display: flex;
   align-items: center;
-  margin: 0 0 -16px -13px;
+  margin: 0 -10px -16px -13px;
 }
 
 .issue-card:hover {
   cursor: move;
+  background-color: #e2eaf2;
 }

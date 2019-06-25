@@ -37,7 +37,6 @@ export class IssueComponent implements OnInit {
 
   onSelectUser(user: User) {
     this.issue.user = user;
-    this.issue.userId = user.id;
   }
 
 

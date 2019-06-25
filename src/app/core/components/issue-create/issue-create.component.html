@@ -1,7 +1,53 @@
-<h2 mat-dialog-title>{{ data.issue ? 'Editing' : 'New'}} Issue</h2>
+<mat-spinner color="primary" *ngIf="spinner"></mat-spinner>
+<mat-toolbar class="create-header">
+  <h2 mat-dialog-title>{{ data.issue ? 'Editing' : 'New'}} Issue</h2>
+  <div class="fill-remaining-space"></div>
+  <p>{{ issue.issueId }}</p>
+  <mat-divider *ngIf="data.issue" [vertical]="true" class="vertical-divider"></mat-divider>
+  <button *ngIf="data.issue" mat-icon-button [matMenuTriggerFor]="moreOptions" aria-label="More options">
+    <mat-icon>more_horiz</mat-icon>
+  </button>
+  <mat-menu #moreOptions="matMenu">
+    <button mat-menu-item (click)="delete()">
+      <mat-icon>delete</mat-icon>
+      <span>Delete</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
 <mat-dialog-content>
 
-</mat-dialog-content>
-<mat-dialog-actions>
+  <div class="user-title-div">
+    <ikan-issue-type-menu [issueType]="issue.issueType"
+                          [issueTypes]="issueTypes"
+                          (update)="setIssueType($event)"></ikan-issue-type-menu>
+    <ikan-user-select [user]="issue.user"
+                      (select)="selectUser($event)"></ikan-user-select>
 
+    <div class="fill-remaining-space"></div>
+
+    <mat-form-field class="story-points-field">
+      <input matInput placeholder="Story Points" [(ngModel)]="issue.storyPoints" type="number" autocomplete="off"
+             name="storyPoints" required>
+    </mat-form-field>
+
+  </div>
+
+  <mat-form-field>
+      <textarea matInput placeholder="Title" [(ngModel)]="issue.title" cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" required cdkFocusInitial></textarea>
+  </mat-form-field>
+
+  <div class="bottom-space-10">
+    <quill-editor [styles]="{minHeight: '100px'}"  placeholder="Description"
+                  [(ngModel)]="issue.description" [modules]="sessionService.richTextModules"
+                  [preserveWhitespace]="true"></quill-editor>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button (click)="dialogRef.close()">Cancel</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-raised-button color="accent" (click)="saveIssue()" [disabled]="!itemIsValid()" ikanStopPropagation>
+    SAVE
+  </button>
 </mat-dialog-actions>

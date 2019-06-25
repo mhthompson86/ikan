@@ -1,12 +1,21 @@
 <mat-card class="issue-card">
-  <mat-card-content>{{ issue.title }}</mat-card-content>
+  <mat-card-content>
+    <h4>{{ issue.title }}</h4>
+    <p class="muted" [innerHTML]="issue.description"></p>
+  </mat-card-content>
   <mat-card-footer>
-    <ikan-issue-type-menu [issueType]="issue.issueType" (update)="onUpdate()"></ikan-issue-type-menu>
+    <ikan-issue-type-menu [issueType]="issue.issueType"
+                          (update)="onUpdate()" ikanStopPropagation></ikan-issue-type-menu>
     <mat-chip-list>
       <mat-chip class="point-chip">{{ issue.storyPoints }}</mat-chip>
     </mat-chip-list>
+
     <div class="fill-remaining-space"></div>
-    <p class="muted">{{ issue.id }}</p>
-    <ikan-user-select [user]="issue.user" [users]="users" (select)="onSelectUser($event)"></ikan-user-select>
+
+    <p class="muted">{{ issue.issueId }}</p>
+
+    <ikan-user-select [user]="issue.user"
+                      [users]="users"
+                      (select)="onSelectUser($event)" ikanStopPropagation></ikan-user-select>
   </mat-card-footer>
 </mat-card>

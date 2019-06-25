@@ -5,18 +5,22 @@ import { User } from './user';
 export class Issue {
   title = '';
   id?: string;
+  issueId: string;
   description = '';
   storyPoints?: number = null;
-  columnId: string = null;
+  columnId = '75398';
   comments?: Comment[] = [];
-  issueTypeId = '73093'; //defaults to story
-  issueType?: IssueType;
-  userId: string;
-  user?: User;
+  issueType?: IssueType = {
+    'id': '73093',
+    'label': 'Story',
+    'icon': 'bookmark',
+    'color': '#43a047'
+  };
+  userId: string = null;
+  user?: User = null;
 
-  constructor(user: User) {
+  constructor(numberOfIssues: number) {
     this.id = Math.floor(Math.random() * 5000).toString();
-    this.userId = user.id;
-    this.user = user;
+    this.issueId = `DEV-${1001 + numberOfIssues}`;
   }
 }

@@ -12,18 +12,17 @@ export class IssueTypeMenuComponent implements OnInit {
   @Input() issueType: IssueType;
   @Input() issueTypes?: IssueType[];
 
-  @Output() update = new EventEmitter();
+  @Output() update = new EventEmitter<IssueType>();
 
   constructor(private issueService: IssueService) { }
 
   ngOnInit() {
     if (!this.issueTypes) this.issueService.getIssueTypes().subscribe((issueTypes: IssueType[]) => this.issueTypes = issueTypes);
-
   }
 
   setIssueType(type: IssueType) {
     this.issueType = type;
-    this.update.emit();
+    this.update.emit(type);
   }
 
 }

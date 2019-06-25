@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { QuillModule } from 'ngx-quill';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { UserSelectComponent } from './components/user-select/user-select.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -29,17 +30,27 @@ import { SortByNamePipe } from './pipes/sort-by-name.pipe';
     CommonModule,
     FormsModule,
     QuillModule.forRoot(),
+    FlexLayoutModule,
+    QuillModule,
+
     AngularMaterialModule
   ],
   exports: [
-    AngularMaterialModule,
     FormsModule,
+    FlexLayoutModule,
+    QuillModule,
+
+    AngularMaterialModule,
 
     UserSelectComponent,
     AlertComponent,
     ConfirmDialogComponent,
     IssueDetailComponent,
-    IssueTypeMenuComponent
+    IssueTypeMenuComponent,
+    StopPropagationDirective
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ]
 })
 export class SharedModule {}

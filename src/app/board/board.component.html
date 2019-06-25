@@ -9,7 +9,7 @@
     <div class="column" *ngFor="let column of columns"
          cdkDropList id="{{column.id}}" (cdkDropListDropped)="dropIssue($event)" [cdkDropListData]="issuesByColumn[column.id]">
       <ikan-issue cdkDrag  *ngFor="let issue of issuesByColumn[column.id]" [issue]="issue" [issueTypes]="issueTypes"
-                  (update)="updateIssue($event)"></ikan-issue>
+                  (update)="issueService.updateIssue($event)" (click)="selectIssue(issue)"></ikan-issue>
     </div>
   </div>
 </div>

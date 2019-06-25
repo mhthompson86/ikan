@@ -1,0 +1,68 @@
+mat-toolbar {
+  background-color: #d42626;
+  color: rgba(255, 255, 255, 0.87);
+  margin: -24px -24px 0;
+  width: auto;
+  display: flex;
+}
+
+
+.user-title-div {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  ikan-user-select {
+    margin-right: 10px;
+  }
+}
+
+.issue-type-option {
+  display: flex;
+  align-items: center;
+  mat-icon {
+    margin-right: 10px;
+  }
+}
+
+.user-type-div {
+  display: flex;
+}
+
+.issue-type-field {
+  margin-left: 5px;
+}
+
+.user-field {
+  margin-right: 5px;
+}
+
+.user-option {
+  display: flex;
+  .user-name {
+    margin-left: 10px;
+  }
+}
+
+::ng-deep .mat-option-text {
+  display: flex !important;
+  align-items: center;
+  .avatar-image {
+    margin-right: 10px;
+  }
+}
+
+::ng-deep ikan-issue-type-menu {
+  mat-icon {
+    transform: scale(1.2);
+  }
+}
+
+.vertical-divider {
+  border-color: rgba(255, 255, 255, 0.87);
+  height: 50%;
+  margin: 0 5px 0 15px !important;
+}
+
+.story-points-field {
+  width: 100px;
+}

@@ -19,7 +19,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ikan-primary: mat-palette((
+$ikan-accent: mat-palette((
   50 : #e2eaf2,
   100 : #b6cbdf,
   200 : #85a9ca,
@@ -52,7 +52,7 @@ $ikan-primary: mat-palette((
   )
 ), 400, 200, 600);
 
-$ikan-accent: mat-palette((
+$ikan-primary: mat-palette((
   50 : #f9e0e0,
   100 : #f0b3b3,
   200 : #e68080,
@@ -180,7 +180,7 @@ mat-list-item.active, [mat-list-item].active {
   margin: 0 8px 0 0;
 }
 
-.ninety-chip, .ninety-accent-chip {
+.ikan-chip, .ikan-accent-chip {
   cursor: pointer;
   margin: 4px;
   transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
@@ -199,12 +199,12 @@ mat-list-item.active, [mat-list-item].active {
   font-weight: 500;
 }
 
-.ninety-chip {
+.ikan-chip {
   background-color: #e0e0e0;
   color: rgba(0, 0, 0, .87);
 }
 
-.ninety-accent-chip {
+.ikan-accent-chip {
   background-color: #306DA4;
   color: rgba(255, 255, 255, .87);
 }
@@ -237,6 +237,7 @@ quill-editor {
    ***Needs to be 0% not just 0***  */
   height: 0%;
   padding: 0 !important;
+  max-width: 1300px;
 }
 
 .login-card {
@@ -269,7 +270,6 @@ mat-card {
   }
 }
 
-
 .ikan-list {
   min-height: 60px;
   display: block;
@@ -288,12 +288,6 @@ mat-card {
 }
 
 .list-item, .cdk-drag-preview {
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  box-sizing: border-box;
-  cursor: pointer;
-  background: white;
-  font-size: 14px;
 
   &:last-child {
     border: none;
@@ -322,26 +316,12 @@ mat-card {
     background-color: #306DA4;
   }
 
-  .mat-list-item-content {
-    padding: 0 !important;
-    font-size: 14px;
-  }
-
-  .list-title {
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0 5px;
-  }
-
   .drag-handle {
     visibility: hidden;
     color: #ccc;
     cursor: move;
   }
 }
-
 
 
 /*  Drag and Drop Stuff */
@@ -351,14 +331,8 @@ mat-card {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
   0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12);
-
-  & > div {
-    height: 50px;
-    display: flex;
-    align-items: center;
-  }
-  .drag-handle {
-    visibility: inherit;
+  mat-card {
+    background-color: #e2eaf2;
   }
 }
 
@@ -382,12 +356,20 @@ mat-card {
 .avatar-image {
   background: no-repeat center center;
   background-size: cover;
+  border-radius: 50%;
+  display: block;
+  height: 35px;
+  width: 35px;
 }
 
 ikan-issue {
   .avatar-image {
     height: 30px;
     width: 30px;
+  }
+  mat-icon.avatar-image {
+    background-color: #dedede;
+    font-size: 26px;
   }
 }
 
@@ -401,6 +383,20 @@ ikan-issue {
   margin-right: 10px;
 }
 
+.avatar-icon {
+  font-size: 32px;
+  text-align: center;
+  height: 35px !important;
+  width: 35px !important;
+  border-radius: 50%;
+  background-color: #dedede;
+  ::ng-deep g {
+    font-size: 35px;
+    height: 35px;
+    width: 35px;
+  }
+}
+
 
 .ikan-tooltip {
   font-size: 14px;
@@ -408,5 +404,5 @@ ikan-issue {
 
 .vertical-divider {
   height: 70%;
-  margin: 0 15px;
+  margin: 0 15px !important;
 }
