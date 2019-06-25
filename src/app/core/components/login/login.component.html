@@ -4,10 +4,13 @@
       <mat-form-field>
         <mat-select required [(ngModel)]="selectedUser">
           <mat-option>-- None --</mat-option>
-          <mat-option [value]="user" *ngFor="let user of users">{{ user.fullName }}</mat-option>
+          <mat-option [value]="user" *ngFor="let user of users" class="user-option">
+            <div class="user-image" [style.backgroundImage]="'url('+ user?.pictureUrl +')'"></div>
+            <div>{{ user.fullName }}</div>
+          </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field hintLabel="{{ 'Password is ' + correctPassword }}">
+      <mat-form-field hintLabel="{{ 'Password is ' + correctPassword }}" class="password-field">
         <input matInput [(ngModel)]="password" placeholder="Password" type="password">
       </mat-form-field>
       <ikan-alert *ngIf="loginAttempted && password !== correctPassword">

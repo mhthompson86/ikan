@@ -1,5 +1,5 @@
 <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="menu-btn avatar-image"
-        [style.backgroundImage]="'url('+ avatar +')'">
+        [style.backgroundImage]="'url('+ authService.currentUser.pictureUrl +')'">
 </button>
 
 <mat-menu #accountMenu="matMenu">
