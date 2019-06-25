@@ -15,7 +15,8 @@
   flex: 1;
   background: #F4F5F7;
   margin: 3px;
-  height: calc(100vh - 200px);
+  min-height: calc(100vh - 200px);
+  padding-bottom: 10px;
 }
 
 .column-headers {

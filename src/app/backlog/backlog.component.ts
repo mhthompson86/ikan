@@ -12,6 +12,7 @@ import { SortingService } from '../core/services/sorting.service';
 import { OrderByPipe } from '../shared/pipes/order-by.pipe';
 import { User } from '../shared/models/user';
 import { UserService } from '../core/services/user.service';
+import { FilterByPipe } from '../shared/pipes/filter-by.pipe';
 
 @Component({
   selector: 'ikan-backlog',
@@ -30,17 +31,26 @@ export class BacklogComponent implements OnInit, OnDestroy {
   sorter: SortingTracker = new SortingTracker(...this.sortProperties);
   Sorted = Sorted;
   users: User[];
+  userIdsFilter = [];
 
 
   constructor(private issueService: IssueService,
               public sessionService: SessionService,
               private sortingService: SortingService,
               private orderByPipe: OrderByPipe,
-              private userService: UserService) { }
+              private userService: UserService,
+              private filterByPipe: FilterByPipe) { }
 
   ngOnInit() {
     this.getIssues();
     this.subscriptions.add(this.issueService.issues$.subscribe((issues: Issue[]) => this.setIssues(issues)));
+    this.subscriptions.add( this.issueService.newIssue$.subscribe((issue: Issue) => {
+      console.log('new issue:', issue);
+      this.issues.push(issue);
+      this.issuesCopy.push(issue);
+      const currentSort = SortingService.getCurrentSortProperty(this.sorter);
+      if (currentSort) this.sortBy(currentSort as 'title' | 'user', this.sorter[currentSort] as Sorted.ascending | Sorted.descending);
+    }));
     this.userService.getUsers().subscribe((users: User[]) => this.users = users);
   }
 
@@ -69,10 +79,22 @@ export class BacklogComponent implements OnInit, OnDestroy {
     }
   }
 
-
   closeDetailView() {
     this.selectedIssue = null;
     this.selectedIndex = null;
+  }
+
+  toggleFilter(user?: User) {
+    if (this.userIdsFilter.indexOf(user ? user.id : null) === -1) {
+      this.userIdsFilter.push(user ? user.id : null);
+    } else {
+      this.userIdsFilter.splice(this.userIdsFilter.indexOf(user ? user.id : null), 1);
+    }
+    this.userIdsFilter = [...this.userIdsFilter];
+  }
+
+  isSelected(user?: User): boolean {
+    return this.userIdsFilter.indexOf(user ? user.id : null) !== -1;
   }
 
   deleteIssue() {

@@ -25,5 +25,6 @@ export class Issue {
   constructor(numberOfIssues: number) {
     this.id = Math.floor(Math.random() * 5000).toString();
     this.issueId = `DEV-${1001 + numberOfIssues}`;
+    this.ordinal = numberOfIssues;
   }
 }

@@ -34,6 +34,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.getIssueTypes();
     this.getUsers();
    this.subscriptions.add( this.issueService.newIssue$.subscribe((issue: Issue) => {
+     console.log('new issue:', issue);
      this.issuesByColumn[issue.columnId].push(issue);
    }));
     this.subscriptions.add( this.issueService.issuesByColumn$.subscribe((issuesByColumn: IssuesByColumn) => {
@@ -67,7 +68,6 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   getTotalStoryPoints(column: Column): number {
     return this.issuesByColumn[column.id].reduce((sum: number, issue: Issue) => sum + issue.storyPoints, 0);
-
   }
 
   dropIssue(event: CdkDragDrop<Issue[]>) {
@@ -79,6 +79,7 @@ export class BoardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex);
     }
+    this.issueService.saveToLocalStorage(this.issuesByColumn);
     // update ordinals and save
     // API that accepts an array of {id: 82345, ordinal: 1}
   }

@@ -16,6 +16,7 @@ import { SearchUserFilterPipe } from './pipes/search-user-filter.pipe';
 import { SortByNamePipe } from './pipes/sort-by-name.pipe';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { FilterByPipe } from './pipes/filter-by.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     SearchUserFilterPipe,
     SortByNamePipe,
     SearchFilterPipe,
-    OrderByPipe
+    OrderByPipe,
+    FilterByPipe
   ],
   imports: [
     CommonModule,
@@ -53,10 +55,12 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     IssueTypeMenuComponent,
     StopPropagationDirective,
     SearchFilterPipe,
-    OrderByPipe
+    OrderByPipe,
+    FilterByPipe
   ],
   providers: [
-    OrderByPipe
+    OrderByPipe,
+    FilterByPipe
   ],
   entryComponents: [
     ConfirmDialogComponent

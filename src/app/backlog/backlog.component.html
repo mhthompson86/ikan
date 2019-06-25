@@ -1,6 +1,19 @@
 <div class="container">
   <mat-card class="ikan-card" [fxHide.lt-lg]="selectedIssue">
     <div class="title-search">
+      <div class="user-button-group">
+        <button mat-icon-button *ngFor="let user of users" (click)="toggleFilter(user)"
+                [class.selected]="isSelected(user)" class="user-filter-btn">
+          <span matTooltip="{{ user.fullName }}"
+                matTooltipPosition="above" matTooltipClass="ikan-tooltip">
+            <span class="avatar-image" *ngIf="user?.pictureUrl" [style.backgroundImage]="'url('+ user?.pictureUrl +')'"></span>
+          </span>
+        </button>
+        <button mat-icon-button matTooltip="Unassigned" class="user-filter-btn" [class.unassigned-selected]="isSelected()"
+                matTooltipPosition="above" matTooltipClass="ikan-tooltip" (click)="toggleFilter()">
+          <mat-icon class="avatar-image">person</mat-icon>
+        </button>
+      </div>
       <div class="fill-remaining-space"></div>
       <mat-form-field class="" floatLabel="never">
         <input #searchInput matInput [placeholder]="'Search ' + (sessionService.pageTitle$ | async)"
@@ -30,7 +43,7 @@
     </mat-toolbar>
     <mat-list class="ikan-list" cdkDropList (cdkDropListDropped)="dropIssue($event)">
       <mat-list-item class="list-item" cdkDrag matRipple
-                     *ngFor="let issue of issues | searchFilter: searchInput.value; let i = index"
+                     *ngFor="let issue of issues | filterBy: 'userId' : userIdsFilter | searchFilter: searchInput.value; let i = index"
                      [ngClass]="{'opened': selectedIssue?.id === issue.id}"
                      (click)="selectIssue(issue, i)">
         <div class="drag-handle" cdkDragHandle fxHide.lt-sm>

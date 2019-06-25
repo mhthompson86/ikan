@@ -1,3 +1,4 @@
+
 .issue-id {
   margin-right: 15px;
 }
@@ -23,3 +24,27 @@ mat-card-title {
   width: 120px;
 }
 
+button.selected {
+  border: 3px solid #306da4 !important;
+  height: auto;
+  width: auto;
+  padding: 2px;
+}
+
+button.unassigned-selected {
+  border: 3px solid #306da4 !important;
+  height: 45px;
+  width: 45px;
+  padding: 2px;
+}
+
+.user-button-group {
+  display: flex;
+  align-items: center;
+}
+
+.user-filter-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

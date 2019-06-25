@@ -17,7 +17,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatRippleModule } from '@angular/material/core';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -26,12 +26,12 @@ import { MatRippleModule } from '@angular/material/core';
     CommonModule,
     MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatListModule, MatTabsModule, MatMenuModule, MatButtonModule,
     MatDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatChipsModule, MatTooltipModule,
-    DragDropModule, MatRippleModule
+    DragDropModule, MatRippleModule, MatButtonToggleModule
   ],
   exports: [
     MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatListModule, MatTabsModule, MatMenuModule, MatButtonModule,
     MatDialogModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatChipsModule, MatTooltipModule,
-    DragDropModule, MatRippleModule
+    DragDropModule, MatRippleModule, MatButtonToggleModule
   ]
 })
 export class AngularMaterialModule {}

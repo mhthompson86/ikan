@@ -93,13 +93,14 @@ export class IssueService {
   createIssue(issue: Issue): Observable<Issue> {
     this.issuesByColumn[issue.columnId].push(issue);
     this.saveToLocalStorage();
+    this.newIssue$.next(issue);
     return of(issue).pipe(
       take(1),
       timeout(2000)
     );
   }
 
-  saveToLocalStorage() {
+  saveToLocalStorage(issuesByColumn = this.issuesByColumn) {
     localStorage.setItem('issues', JSON.stringify(this.issuesByColumn));
   }
 
