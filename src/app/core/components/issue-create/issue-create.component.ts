@@ -28,7 +28,7 @@ export class IssueCreateComponent implements OnInit, OnDestroy {
   subscriptions = new Subscription();
   commentSub$ = new Subject<Comment>();
 
-  constructor(private dialogRef: MatDialogRef<IssueCreateComponent>,
+  constructor(public dialogRef: MatDialogRef<IssueCreateComponent>,
               @Inject(MAT_DIALOG_DATA) public data: {issue?: Issue, numberOfIssues: number},
               public sessionService: SessionService,
               private userService: UserService,

@@ -34,7 +34,7 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
 
 
   constructor(private issueService: IssueService,
-              private sessionService: SessionService,
+              public sessionService: SessionService,
               private authService: AuthService) {
   }
 
