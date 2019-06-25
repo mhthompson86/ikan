@@ -2,6 +2,9 @@
   <div class="column-headers">
     <mat-toolbar *ngFor="let column of columns">
       <span class="column-name">{{ column.name }}</span>
+      <mat-chip-list>
+        <mat-chip class="point-chip">{{ getTotalStoryPoints(column) }}</mat-chip>
+      </mat-chip-list>
     </mat-toolbar>
 
   </div>

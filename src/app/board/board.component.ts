@@ -65,6 +65,11 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.createService.openCreateIssueDialog(issue);
   }
 
+  getTotalStoryPoints(column: Column): number {
+    return this.issuesByColumn[column.id].reduce((sum: number, issue: Issue) => sum + issue.storyPoints, 0);
+
+  }
+
   dropIssue(event: CdkDragDrop<Issue[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
