@@ -17,8 +17,7 @@
 <mat-dialog-content>
 
   <div class="user-title-div">
-    <ikan-issue-type-menu [issueType]="issue.issueType"
-                          [issueTypes]="issueTypes"
+    <ikan-issue-type-menu [issueTypeId]="issue.issueTypeId"
                           (update)="setIssueType($event)"></ikan-issue-type-menu>
     <ikan-user-select [user]="issue.user"
                       (select)="selectUser($event)"></ikan-user-select>

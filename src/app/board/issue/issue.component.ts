@@ -1,17 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { Issue } from '../../shared/models/issue';
 import { IssueType } from '../../shared/models/issue-type';
 import { User } from '../../shared/models/user';
 import { IssueService } from '../../core/services/issue.service';
 import { UserService } from '../../core/services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ikan-issue',
   templateUrl: './issue.component.html',
   styleUrls: ['./issue.component.scss']
 })
-export class IssueComponent implements OnInit {
+export class IssueComponent implements OnInit, OnDestroy {
   @Input() issue: Issue;
   @Input() issueTypes?: IssueType[];
   @Input() users?: User[];
@@ -19,12 +20,18 @@ export class IssueComponent implements OnInit {
   @Output() update = new EventEmitter<Issue>();
   @Output() delete = new EventEmitter<Issue>();
 
+  subscriptions = new Subscription();
+
   constructor(private issueService: IssueService,
               private userService: UserService) { }
 
   ngOnInit() {
-    if (!this.issueTypes) this.issueService.getIssueTypes().subscribe((issueTypes: IssueType[]) => this.issueTypes = issueTypes);
-    if (!this.users) this.userService.getUsers().subscribe((users: User[]) => this.users = users);
+    if (!this.issueTypes) this.getIssueTypes();
+    if (!this.users) this.getUsers();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   onUpdate() {
@@ -39,6 +46,12 @@ export class IssueComponent implements OnInit {
     this.issue.user = user;
   }
 
+  getUsers(): void {
+    this.subscriptions.add(this.userService.getUsers().subscribe((users: User[]) => this.users = users));
+  }
 
+  getIssueTypes(): void {
+    this.issueService.getIssueTypes().subscribe((issueTypes: IssueType[]) => this.issueTypes = issueTypes);
+  }
 
 }

@@ -50,7 +50,7 @@ export class IssueDetailComponent implements OnInit, OnDestroy {
   }
 
   setIssueType(issueType: IssueType): void {
-    this.issue.issueType = issueType;
+    this.issue.issueTypeId = issueType.id;
   }
 
 

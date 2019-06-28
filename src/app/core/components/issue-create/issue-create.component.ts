@@ -39,8 +39,8 @@ export class IssueCreateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentUser = this.authService.currentUser;
-    this.userService.getUsers().subscribe((users: User[]) => this.users = users);
-    this.issueService.getIssueTypes().subscribe((issueTypes: IssueType[]) => this.issueTypes = issueTypes);
+    this.userService.users$.subscribe((users: User[]) => this.users = users);
+    this.issueService.issueTypes$.subscribe((issueTypes: IssueType[]) => this.issueTypes = issueTypes);
     this.subscriptions.add(this.commentSub$.pipe(debounceTime(400)).subscribe((comment: Comment) => this.onCommentEdit(comment)));
   }
 
@@ -51,13 +51,13 @@ export class IssueCreateComponent implements OnInit, OnDestroy {
   saveIssue(close = true) {
     this.spinner = true;
     if (this.data.issue) {
-      this.issueService.updateIssue(this.issue);
+      this.issueService.updateIssue(this.issue.id, this.issue);
       if (close) this.dialogRef.close();
       this.spinner = false;
     } else {
       this.issue.createdDate = new Date();
       this.issue.createdBy = this.authService.currentUser.fullName;
-      this.issueService.createIssue(this.issue).subscribe(() => {
+      this.issueService.createIssue(this.issue).then(() => {
         if (close) this.dialogRef.close();
         this.spinner = false;
       });
@@ -66,7 +66,7 @@ export class IssueCreateComponent implements OnInit, OnDestroy {
 
   delete() {
     this.issueService.confirmDeleteIssueDialog(this.issue).subscribe((result: boolean) => {
-      if (result) this.issueService.deleteIssue(this.issue).subscribe(() => this.dialogRef.close());
+      if (result) this.issueService.deleteIssue(this.issue.id).then(() => this.dialogRef.close());
     });
   }
 
@@ -79,7 +79,7 @@ export class IssueCreateComponent implements OnInit, OnDestroy {
   }
 
   setIssueType(issueType: IssueType): void {
-    this.issue.issueType = issueType;
+    this.issue.issueTypeId = issueType.id;
   }
 
   addComment() {

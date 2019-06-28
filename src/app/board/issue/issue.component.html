@@ -4,7 +4,7 @@
     <p class="muted" [innerHTML]="issue.description"></p>
   </mat-card-content>
   <mat-card-footer>
-    <ikan-issue-type-menu [issueType]="issue.issueType"
+    <ikan-issue-type-menu [issueTypeId]="issue.issueTypeId"
                           (update)="onUpdate()" ikanStopPropagation></ikan-issue-type-menu>
     <mat-chip-list>
       <mat-chip class="point-chip">{{ issue.storyPoints ? issue.storyPoints : '-' }}</mat-chip>
@@ -14,7 +14,7 @@
 
     <p class="muted">{{ issue.issueId }}</p>
 
-    <ikan-user-select [user]="issue.user"
+    <ikan-user-select [userId]="issue.userId"
                       [users]="users"
                       (select)="onSelectUser($event)" ikanStopPropagation></ikan-user-select>
   </mat-card-footer>

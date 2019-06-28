@@ -1,4 +1,3 @@
-import { IssueType } from './issue-type';
 import { Comment } from './comment';
 import { User } from './user';
 
@@ -11,12 +10,7 @@ export class Issue {
   columnId = '75398';
   ordinal: number;
   comments?: Comment[] = [];
-  issueType?: IssueType = {
-    'id': '73093',
-    'label': 'Story',
-    'icon': 'bookmark',
-    'color': '#43a047'
-  };
+  issueTypeId: string;
   userId: string = null;
   user?: User = null;
   createdDate: Date;

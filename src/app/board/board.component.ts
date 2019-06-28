@@ -18,7 +18,8 @@ import { CreateService } from '../core/services/create.service';
 })
 export class BoardComponent implements OnInit, OnDestroy {
 
-  issuesByColumn: IssuesByColumn;
+  issuesByColumn: IssuesByColumn = {};
+  issues: Issue[];
   columns: Column[];
   issueTypes: IssueType[];
   users: User[];
@@ -29,45 +30,63 @@ export class BoardComponent implements OnInit, OnDestroy {
               private createService: CreateService) { }
 
   ngOnInit() {
-    this.getIssuesByColumn();
+    this.getIssues();
     this.getColumns();
-    this.getIssueTypes();
     this.getUsers();
-   this.subscriptions.add( this.issueService.newIssue$.subscribe((issue: Issue) => {
-     console.log('new issue:', issue);
-     this.issuesByColumn[issue.columnId].push(issue);
-   }));
-    this.subscriptions.add( this.issueService.issuesByColumn$.subscribe((issuesByColumn: IssuesByColumn) => {
-      this.issuesByColumn = issuesByColumn;
-    }));
+    this.getIssueTypes();
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
-  getIssuesByColumn(): void {
-    this.issueService.getIssuesByColumn().subscribe();
+
+  getIssues(): void {
+    this.subscriptions.add(this.issueService.getIssues().subscribe((issues: Issue[]) => {
+      this.issues = issues;
+      this.setIssuesByColumn();
+    }));
   }
 
   getColumns(): void {
-    this.issueService.getColumns().subscribe((columns: Column[]) => this.columns = columns);
+    this.subscriptions.add(this.issueService.getColumns().subscribe((columns: Column[]) => {
+      this.columns = columns;
+      this.setIssuesByColumn();
+    }));
+  }
+
+  getUsers(): void {
+    this.subscriptions.add(this.userService.getUsers().subscribe((users: User[]) => this.users = users));
+  }
+
+  setIssuesByColumn() {
+    if (this.issues && this.columns) {
+      this.columns.forEach((column: Column) => {
+        this.issuesByColumn[column.id] = [];
+      });
+      this.issues.forEach((issue: Issue) => {
+        if (!this.issuesByColumn[issue.columnId]) this.issuesByColumn[issue.columnId] = [];
+        this.issuesByColumn[issue.columnId].push(issue);
+      });
+    }
+  }
+
+  updateIssue(issue) {
+    this.issueService.updateIssue(issue.id, issue).then();
   }
 
   getIssueTypes(): void {
     this.issueService.getIssueTypes().subscribe((issueTypes: IssueType[]) => this.issueTypes = issueTypes);
   }
 
-  getUsers(): void {
-    this.userService.getUsers().subscribe((users: User[]) => this.users = users);
-  }
 
   openIssue(issue: Issue) {
     this.createService.openCreateIssueDialog(issue);
   }
 
   getTotalStoryPoints(column: Column): number {
-    return this.issuesByColumn[column.id].reduce((sum: number, issue: Issue) => sum + issue.storyPoints, 0);
+    if (this.issuesByColumn[column.id])
+      return this.issuesByColumn[column.id].reduce((sum: number, issue: Issue) => sum + issue.storyPoints, 0);
   }
 
   dropIssue(event: CdkDragDrop<Issue[]>) {
@@ -79,7 +98,7 @@ export class BoardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex);
     }
-    this.issueService.saveToLocalStorage(this.issuesByColumn);
+    //this.issueService.saveToLocalStorage(this.issuesByColumn);
     // update ordinals and save
     // API that accepts an array of {id: 82345, ordinal: 1}
   }

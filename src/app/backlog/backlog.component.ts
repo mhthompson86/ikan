@@ -38,28 +38,22 @@ export class BacklogComponent implements OnInit, OnDestroy {
               public sessionService: SessionService,
               private sortingService: SortingService,
               private orderByPipe: OrderByPipe,
-              private userService: UserService,
-              private filterByPipe: FilterByPipe) { }
+              private userService: UserService) { }
 
   ngOnInit() {
-    this.getIssues();
-    this.subscriptions.add(this.issueService.issues$.subscribe((issues: Issue[]) => this.setIssues(issues)));
+    this.subscriptions.add(this.issueService.getIssues().subscribe((issues: Issue[]) => this.setIssues(issues)));
+    this.subscriptions.add(this.userService.getUsers().subscribe((users: User[]) => this.users = users));
+
     this.subscriptions.add( this.issueService.newIssue$.subscribe((issue: Issue) => {
-      console.log('new issue:', issue);
       this.issues.push(issue);
       this.issuesCopy.push(issue);
       const currentSort = SortingService.getCurrentSortProperty(this.sorter);
       if (currentSort) this.sortBy(currentSort as 'title' | 'user', this.sorter[currentSort] as Sorted.ascending | Sorted.descending);
     }));
-    this.userService.getUsers().subscribe((users: User[]) => this.users = users);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-  }
-
-  getIssues(): void {
-    this.issueService.getIssues().subscribe((issues: Issue[]) => this.setIssues(issues));
   }
 
   setIssues(issues: Issue[]) {
@@ -98,13 +92,13 @@ export class BacklogComponent implements OnInit, OnDestroy {
   }
 
   deleteIssue() {
-    this.issueService.deleteIssue(this.selectedIssue).subscribe(() => {
+    /*this.issueService.deleteIssue(this.selectedIssue).subscribe(() => {
       this.issues.splice(this.selectedIndex, 1);
-    });
+    });*/
   }
 
   saveIssue(issue: Issue) {
-    this.issueService.updateIssue(issue);
+    this.issueService.updateIssue(issue.id, issue).then();
   }
 
 
