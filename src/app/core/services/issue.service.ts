@@ -35,7 +35,7 @@ export class IssueService {
       this.setIssues(issues);
       return of(issues).pipe(take(1));
     }
-    return this.http.get<{ issues: IssuesByColumn }>('/assets/mock-data/issues.json')
+    return this.http.get<{ issues: IssuesByColumn }>('./assets/mock-data/issues.json')
       .pipe(
         timeout(2000),
         map(resp => resp.issues),
@@ -121,7 +121,7 @@ export class IssueService {
   }
 
   getColumns(): Observable<Column[]> {
-    return this.http.get<{ columns: Column[] }>('/assets/mock-data/columns.json')
+    return this.http.get<{ columns: Column[] }>('./assets/mock-data/columns.json')
       .pipe(
         timeout(1000),
         map(resp => resp.columns)
@@ -129,7 +129,7 @@ export class IssueService {
   }
 
   getIssueTypes(): Observable<IssueType[]> {
-    return this.http.get<IssueType[]>('/assets/mock-data/issue-types.json')
+    return this.http.get<IssueType[]>('./assets/mock-data/issue-types.json')
       .pipe(
         timeout(1000),
       );
