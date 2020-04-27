@@ -11,6 +11,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BoardModule } from './board/board.module';
 import { BacklogModule } from './backlog/backlog.module';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { BacklogModule } from './backlog/backlog.module';
     // AppRouting module must be declared last in order to prevent the ** from catching
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue: '/dashboard/'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
