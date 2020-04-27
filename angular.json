@@ -17,6 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/dashboard/",
+            "deployUrl": "/dashboard/",
             "outputPath": "dist/ikan",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -46,8 +48,6 @@
               "extractCss": true,
               "namedChunks": false,
               "aot": true,
-              "baseHref": "/dashboard/",
-              "deployUrl": "/dashboard/",
               "assets": [
                 "src/favicon.ico",
                 "src/assets",
