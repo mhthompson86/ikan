@@ -23,7 +23,7 @@ export class AuthService {
   logOut() {
     this.currentUser = null;
     localStorage.removeItem('currentUser');
-    this.router.navigate(['login']);
+    this.router.navigate(['ikan-login']);
   }
 
 

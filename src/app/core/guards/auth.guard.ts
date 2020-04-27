@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivateChild, CanDeactivate<LoginComponent
     console.log('is logged in:', this.authService.isLoggedIn);
     if (this.authService.isLoggedIn) return true;
     this.authService.redirectUrl = url;
-    this.router.navigate(['/login']);
+    this.router.navigate(['/ikan-login']);
     return false;
   }
 }
