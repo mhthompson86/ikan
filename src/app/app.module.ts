@@ -11,7 +11,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BoardModule } from './board/board.module';
 import { BacklogModule } from './backlog/backlog.module';
-import { environment } from '../../../environments/environment';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
