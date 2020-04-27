@@ -13,7 +13,7 @@ import { CreateService } from '../../services/create.service';
 export class TopNavbarComponent implements OnInit {
 
   pageTitle$: Observable<string>;
-  logo = 'assets/images/logo.png';
+  logo = 'assets/img/logo.png';
   navLinks = [
     { path: '', label: 'DEV BOARD', icon: 'developer_board' },
     { path: '/backlog', label: 'BACKLOG', icon: 'list' }
