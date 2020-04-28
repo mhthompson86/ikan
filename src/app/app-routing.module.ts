@@ -8,7 +8,7 @@ import { LoginComponent } from './core/components/login/login.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'ikan-login', component: LoginComponent, data: { title: 'Login' }, canDeactivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, data: { title: 'Login' }, canDeactivate: [AuthGuard] },
   {
     path: '', component: HomeComponent, canActivateChild: [AuthGuard],
     children: [
