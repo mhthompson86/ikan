@@ -49,7 +49,8 @@
               "assets": [
                 "src/favicon.ico",
                 "src/assets",
-                "src/_redirects"
+                "src/_redirects",
+                "src/_headers"
               ],
               "extractLicenses": true,
               "vendorChunk": false,
