@@ -17,8 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "/",
-            "deployUrl": "https://tmac-ikan.ninety.io/",
             "outputPath": "dist/ikan",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -36,6 +34,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/",
+              "deployUrl": "https://tmac-ikan.ninety.io/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
