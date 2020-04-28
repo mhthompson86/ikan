@@ -11,6 +11,7 @@ import { Column } from '../../shared/models/column';
 import { IssueType } from '../../shared/models/issue-type';
 import { SpinnerService } from './spinner.service';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class IssueService {
       this.setIssues(issues);
       return of(issues).pipe(take(1));
     }
-    return this.http.get<{ issues: IssuesByColumn }>('/assets/mock-data/issues.json')
+    return this.http.get<{ issues: IssuesByColumn }>(`${environment.baseUrl}/assets/mock-data/issues.json`)
       .pipe(
         timeout(2000),
         map(resp => resp.issues),
@@ -121,7 +122,7 @@ export class IssueService {
   }
 
   getColumns(): Observable<Column[]> {
-    return this.http.get<{ columns: Column[] }>('/assets/mock-data/columns.json')
+    return this.http.get<{ columns: Column[] }>(`${environment.baseUrl}/assets/mock-data/columns.json`)
       .pipe(
         timeout(1000),
         map(resp => resp.columns)
@@ -129,7 +130,7 @@ export class IssueService {
   }
 
   getIssueTypes(): Observable<IssueType[]> {
-    return this.http.get<IssueType[]>('/assets/mock-data/issue-types.json')
+    return this.http.get<IssueType[]>(`${environment.baseUrl}/assets/mock-data/issue-types.json`)
       .pipe(
         timeout(1000),
       );
@@ -138,7 +139,7 @@ export class IssueService {
   confirmDeleteIssueDialog(issue: Issue): Observable<boolean> {
     const confirmDeleteDialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: `Delete ${ issue.issueId }?`,
+        title: `Delete ${issue.issueId}?`,
         message: 'You\'re about to permanently delete this issue and all of its data.',
         okButton: 'Delete',
         okButtonColor: 'warn',

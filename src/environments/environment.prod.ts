@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: '/dashboard/'
+  baseUrl: 'https://tmac-ikan.ninety.io'
 };
