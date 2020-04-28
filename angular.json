@@ -34,8 +34,6 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/",
-              "deployUrl": "https://tmac-ikan.ninety.io/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
