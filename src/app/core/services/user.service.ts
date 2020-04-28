@@ -14,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('/dashboard/assets/mock-data/users.json');
+    return this.http.get<User[]>('/assets/mock-data/users.json');
   }
 
 }
